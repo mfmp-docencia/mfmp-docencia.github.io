@@ -1,0 +1,12 @@
+title: Project Classroom
+description: Framework para la gestión y publicación de contenido docente
+lang: es
+timezone: America/Santiago
+
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - README.md
+  - LICENSE
+  - CHANGELOG.md
