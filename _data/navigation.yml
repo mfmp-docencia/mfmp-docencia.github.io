@@ -1,0 +1,5 @@
+- label: Inicio
+  url: /
+- label: Cursos
+  url: /courses/
+
