@@ -2,7 +2,9 @@
 layout: default
 title: Calendario TDA-301 · 2026-1
 description: Calendario de la edición 2026-1 del curso TDA-301.
-permalink: /courses/tda-301/editions/2026-1/
+permalink: /tda-301/2026-1/
+course_id: tda-301
+edition_id: tda-301-2026-1
 ---
 
 <header class="page-header container">
@@ -14,5 +16,5 @@ permalink: /courses/tda-301/editions/2026-1/
 <section class="section container" aria-labelledby="planificacion">
   <h2 id="planificacion">Planificación</h2>
   <p>La planificación detallada se publicará aquí cuando esté confirmada.</p>
-  <p><a class="text-link" href="{{ '/courses/tda-301/' | relative_url }}">← Volver al curso</a></p>
+  <p><a class="text-link" href="{{ '/tda-301/' | relative_url }}">← Volver al curso</a></p>
 </section>

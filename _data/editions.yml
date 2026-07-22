@@ -1,5 +1,7 @@
 - id: tda-301-2026-1
   course_id: tda-301
   period: "2026-1"
+  path: "2026-1"
+  current: true
   starts_on: 2026-03-17
   ends_on: 2026-05-09

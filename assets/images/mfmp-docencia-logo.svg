@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 177" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">MFMP Docencia</title>
+  <desc id="logo-desc">Logo de MFMP Docencia con marco de computador y cuaderno anillado.</desc>
+
+  <g fill="none" stroke="#0d1b2a" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="7" d="M62 124V33c0-7 5-12 12-12h99"/>
+    <path stroke-width="7" d="M48 129h260c-2 8-8 11-18 11H66c-10 0-16-3-18-11Z"/>
+    <path stroke-width="4" d="M111 129c1 5 5 7 11 7h15c6 0 10-2 11-7"/>
+  </g>
+
+  <text x="90" y="104" font-family="Poppins, Inter, Arial, sans-serif" font-size="71" font-weight="800" letter-spacing="-6">
+    <tspan fill="#0d1b2a">M</tspan><tspan fill="#1ca3a3">F</tspan><tspan fill="#ff6b6b">M</tspan><tspan fill="#0d1b2a">P</tspan>
+  </text>
+
+  <g transform="translate(295 43)">
+    <rect x="14" y="0" width="61" height="87" rx="8" fill="#ffffff" stroke="#0d1b2a" stroke-width="6"/>
+    <g fill="none" stroke="#1ca3a3" stroke-linecap="round">
+      <path stroke-width="6" d="M3 14h20M3 28h20M3 42h20M3 56h20M3 70h20"/>
+      <path stroke-width="4" d="M36 29h28M36 43h28M36 57h28"/>
+    </g>
+    <path d="M46 84v22l10-8 10 8V84" fill="#ff6b6b"/>
+  </g>
+
+  <g transform="translate(96 158)">
+    <path d="M0 0h20M201 0h20" fill="none" stroke="#ff6b6b" stroke-linecap="round" stroke-width="3"/>
+    <text x="24" y="8" fill="#137f82" font-family="Poppins, Inter, Arial, sans-serif" font-size="21" font-weight="600" letter-spacing="8.5">DOCENCIA</text>
+  </g>
+</svg>
