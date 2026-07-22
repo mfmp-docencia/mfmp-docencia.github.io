@@ -370,6 +370,8 @@ h2 {
   }
 
   .header-inner { padding-block: 1rem; }
+  .site-brand,
+  .site-brand img { width: 100%; }
   .site-nav { width: 100%; justify-content: space-between; }
   .intro-grid { grid-template-columns: 1fr; gap: 1rem; }
   .hero-grid { grid-template-columns: 1fr; }
