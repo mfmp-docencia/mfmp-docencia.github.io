@@ -48,11 +48,11 @@ description: Cursos y recursos docentes publicados en MFMP Docencia.
       {% for course in site.data.courses %}
         <article class="course-card">
           <p class="course-code">{{ course.code }}</p>
-          <h3><a href="{{ '/courses/' | append: course.id | append: '/' | relative_url }}">{{ course.name }}</a></h3>
+          <h3><a href="{{ '/' | append: course.id | append: '/' | relative_url }}">{{ course.name }}</a></h3>
           {% for career in site.data.careers %}
             {% if career.id == course.career_id %}<p>{{ career.name }}</p>{% endif %}
           {% endfor %}
-          <a class="card-link" href="{{ '/courses/' | append: course.id | append: '/' | relative_url }}" aria-label="Ir al curso {{ course.name }}">Ir al curso <span aria-hidden="true">→</span></a>
+          <a class="card-link" href="{{ '/' | append: course.id | append: '/' | relative_url }}" aria-label="Ir al curso {{ course.name }}">Ir al curso <span aria-hidden="true">→</span></a>
         </article>
       {% endfor %}
     </div>

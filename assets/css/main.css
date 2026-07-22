@@ -62,49 +62,13 @@ a { color: inherit; }
 .site-brand {
   display: inline-flex;
   align-items: center;
-  gap: .7rem;
-  font-weight: 750;
   text-decoration: none;
 }
 
-.brand-logo {
-  position: relative;
-  display: grid;
-  min-width: 7rem;
-  padding: .36rem .65rem .2rem;
-  text-align: center;
-}
-
-.brand-frame {
-  position: absolute;
-  inset: 0;
-  border: 2px solid var(--ink);
-  border-right: 0;
-  border-bottom-color: var(--accent);
-  border-radius: .25rem 0 0 .25rem;
-}
-
-.brand-letters {
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  font-family: Poppins, Inter, sans-serif;
-  font-size: 1.35rem;
-  line-height: 1;
-  letter-spacing: -.08em;
-}
-
-.brand-letters b:nth-child(2) { color: var(--accent); }
-.brand-letters b:nth-child(3) { color: var(--coral); }
-
-.brand-subtitle {
-  z-index: 1;
-  margin-top: .24rem;
-  color: var(--accent-dark);
-  font-size: .48rem;
-  font-weight: 800;
-  letter-spacing: .34em;
-  text-transform: uppercase;
+.site-brand img {
+  display: block;
+  width: clamp(8.25rem, 13vw, 9.5rem);
+  height: auto;
 }
 
 .site-nav {
@@ -269,6 +233,106 @@ h2 {
 
 .card-link { margin-top: auto; }
 
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.25rem;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+  background: var(--paper);
+  box-shadow: 0 .65rem 2rem rgb(13 27 42 / 6%);
+  text-decoration: none;
+}
+
+.contact-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.contact-card svg {
+  width: 2.25rem;
+  flex: 0 0 2.25rem;
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.contact-card span { min-width: 0; }
+
+.contact-card strong,
+.contact-card small { display: block; }
+
+.contact-card small {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+
+.calendar-source {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.source-note {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.calendar-periods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.calendar-period h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+
+.calendar-list {
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.calendar-event {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, .45fr) minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.15rem 0 1.15rem 1rem;
+  border-top: 1px solid var(--line);
+  border-left: .25rem solid var(--accent);
+}
+
+.calendar-event--holiday { border-left-color: var(--coral); }
+.calendar-event--pause { border-left-color: var(--muted); }
+
+.calendar-event p,
+.calendar-event h3 { margin: 0; }
+
+.calendar-event h3 {
+  font-family: Poppins, Inter, sans-serif;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.calendar-event div p {
+  margin-top: .25rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.calendar-date {
+  color: var(--accent-dark);
+  font-size: .88rem;
+  font-weight: 750;
+}
+
 .page-header { padding: clamp(4rem, 10vw, 7rem) 0 clamp(2.5rem, 6vw, 4rem); }
 
 .site-footer {
@@ -310,6 +374,8 @@ h2 {
   .intro-grid { grid-template-columns: 1fr; gap: 1rem; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-illustration { max-width: 19rem; }
+  .calendar-periods { grid-template-columns: 1fr; }
+  .calendar-event { grid-template-columns: 1fr; gap: .35rem; }
 
   .footer-inner {
     grid-template-columns: 1fr;

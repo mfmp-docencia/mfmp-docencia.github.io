@@ -1,0 +1,87 @@
+year: 2026
+institution: AIEP
+source_url: "https://transparencia.aiep.cl/index.php/docs/calendario-academico-2026/"
+resolution: "Resolución N°0690/2026"
+updated_on: 2026-05-07
+
+periods:
+  - title: Primer semestre
+    events:
+      - starts_on: 2026-03-09
+        ends_on: 2026-03-14
+        title: "Inicio de actividades para estudiantes nuevos"
+        detail: "Semana de integración académica Conéctate."
+        type: academic
+      - starts_on: 2026-03-16
+        title: "Inicio de actividades para estudiantes antiguos"
+        type: academic
+      - starts_on: 2026-04-03
+        ends_on: 2026-04-04
+        title: "Feriado de Semana Santa"
+        type: holiday
+      - starts_on: 2026-05-01
+        title: "Feriado Día del Trabajador"
+        type: holiday
+      - starts_on: 2026-05-02
+        title: "Feriado académico"
+        type: pause
+      - starts_on: 2026-05-21
+        title: "Feriado Día de las Glorias Navales"
+        type: holiday
+      - starts_on: 2026-06-27
+        title: "Feriado académico"
+        type: pause
+      - starts_on: 2026-06-29
+        title: "Feriado San Pedro y San Pablo"
+        type: holiday
+      - starts_on: 2026-07-16
+        title: "Feriado Día de la Virgen del Carmen"
+        type: holiday
+      - starts_on: 2026-08-01
+        title: "Fin de actividades académicas"
+        type: academic
+      - starts_on: 2026-08-03
+        ends_on: 2026-08-08
+        title: "Vacaciones de invierno"
+        type: pause
+
+  - title: Segundo semestre
+    events:
+      - starts_on: 2026-08-10
+        title: "Inicio de actividades para estudiantes antiguos"
+        type: academic
+      - starts_on: 2026-08-15
+        title: "Feriado Asunción de la Virgen"
+        type: holiday
+      - starts_on: 2026-09-14
+        ends_on: 2026-09-17
+        title: "Pausa de actividades académicas"
+        type: pause
+      - starts_on: 2026-09-18
+        ends_on: 2026-09-19
+        title: "Feriado de Fiestas Patrias"
+        type: holiday
+      - starts_on: 2026-10-10
+        title: "Feriado institucional por aniversario AIEP"
+        type: pause
+      - starts_on: 2026-10-12
+        title: "Feriado Encuentro de Dos Mundos"
+        type: holiday
+      - starts_on: 2026-10-31
+        title: "Feriado Día de las Iglesias Evangélicas y Protestantes"
+        type: holiday
+      - starts_on: 2026-12-07
+        title: "Feriado académico"
+        type: pause
+      - starts_on: 2026-12-08
+        title: "Feriado Inmaculada Concepción"
+        type: holiday
+      - starts_on: 2026-12-24
+        title: "Fin de actividades académicas"
+        type: academic
+      - starts_on: 2026-12-25
+        title: "Feriado Navidad"
+        type: holiday
+      - starts_on: 2026-12-26
+        title: "Feriado académico"
+        type: pause

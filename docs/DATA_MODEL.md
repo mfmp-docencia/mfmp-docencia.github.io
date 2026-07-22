@@ -46,12 +46,45 @@ Cada registro incluye:
 - `id`: identificador estable y único de la edición.
 - `course_id`: referencia al `id` de un registro en `courses.yml`.
 - `period`: periodo al que corresponde la ejecución.
+- `path`: segmento estable de la URL pública de la edición dentro del curso.
+- `current`: indica cuál edición debe enlazarse como vigente desde la navegación del curso.
 - `starts_on`: fecha de inicio, cuando se conozca.
 - `ends_on`: fecha de término, cuando se conozca.
 
 La edición inicial de TDA-301 representa el periodo `2026-1`, con fecha de inicio `2026-03-17` y fecha de término `2026-05-09`. Las fechas se almacenan en formato ISO 8601 (`AAAA-MM-DD`).
 
 Una nueva ejecución de TDA-301 debe agregarse como otro registro de `editions.yml`. No debe crearse una copia del curso en `courses.yml`.
+
+El campo `path` no contiene la ruta completa. La URL pública se construye conservando la relación entre curso y edición:
+
+```text
+/<course-id>/<edition-path>/
+```
+
+Para la edición inicial, la ruta resultante es `/tda-301/2026-1/`. Solo una edición de cada curso puede declarar `current: true`.
+
+### `_data/academic_calendar.yml`
+
+Contiene fechas institucionales compartidas que afectan a varios cursos y no pertenecen a una edición particular.
+
+El archivo declara:
+
+- `year`: año académico representado.
+- `institution`: institución responsable del calendario.
+- `source_url`: fuente institucional vigente.
+- `resolution`: instrumento que establece o modifica las fechas.
+- `updated_on`: fecha de vigencia o actualización de la fuente.
+- `periods`: agrupaciones de eventos para su presentación.
+
+Cada evento incluye:
+
+- `starts_on`: fecha de inicio en formato ISO 8601.
+- `ends_on`: fecha de término en formato ISO 8601, cuando el evento comprende más de un día.
+- `title`: nombre breve del hito institucional.
+- `detail`: aclaración opcional y breve.
+- `type`: categoría de presentación, como `academic`, `holiday` o `pause`.
+
+El calendario académico institucional no sustituye la planificación de una `Edition`. Las clases y actividades de una ejecución concreta continúan bajo `courses/<course-id>/editions/<edition-id>/`.
 
 ### `_data/navigation.yml`
 
@@ -62,7 +95,7 @@ Cada elemento incluye:
 - `label`: texto visible del enlace.
 - `url`: ruta del destino dentro del sitio.
 
-La navegación inicial contiene solamente las entradas generales `Inicio` y `Cursos`. No contiene el catálogo de carreras, cursos o ediciones; esas relaciones pertenecen a sus respectivos archivos de datos.
+La navegación general contiene las entradas `Inicio`, `Cursos`, `Calendario` y `Acerca de`. No contiene el catálogo de carreras, cursos o ediciones; esas relaciones pertenecen a sus respectivos archivos de datos.
 
 ## Relación entre Career, Course y Edition
 
@@ -102,10 +135,13 @@ Corresponde almacenar en Markdown:
 - La organización narrativa del contenido docente.
 - El contenido y los recursos reutilizables del curso.
 - La planificación desarrollada de una edición cuando requiera más que metadatos breves.
+- Las páginas globales de presentación, calendario institucional y contacto.
 
 El contenido permanente debe ubicarse bajo el curso correspondiente. El contenido temporal debe ubicarse bajo su edición. Una edición debe referenciar el contenido del curso en lugar de duplicarlo.
 
 Los archivos YAML no deben contener párrafos extensos de contenido docente. Los archivos Markdown no deben duplicar catálogos o relaciones que ya estén definidas en `_data/`.
+
+La información global de contacto se mantiene en una única página `/contacto/`. Los cursos pueden enlazarla desde su navegación, pero no deben copiar sus datos en cada directorio de curso.
 
 ## Reglas para identificadores
 
