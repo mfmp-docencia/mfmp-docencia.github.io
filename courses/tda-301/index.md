@@ -9,7 +9,7 @@ course_id: tda-301
 <header class="page-header container">
   <p class="eyebrow">TDA-301</p>
   <h1>Taller de Programación para el Análisis de Datos</h1>
-  <p>Técnico en Análisis de Datos</p>
+  <p class="career-tag">Carrera · Técnico en Análisis de Datos</p>
 </header>
 
 <section class="section container intro-grid" aria-labelledby="contenido-curso">
