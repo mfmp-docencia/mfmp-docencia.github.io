@@ -7,7 +7,8 @@
       {% assign brand_url = '/' %}
     {% endif %}
     <a class="site-brand" href="{{ brand_url | relative_url }}" aria-label="{{ site.title }}, inicio">
-      <img src="{{ '/assets/images/mfmp-docencia-logo.svg' | relative_url }}" alt="" width="152" height="65">
+      <img class="site-logo site-logo--light" src="{{ '/assets/images/mfmp-docencia-logo.svg' | relative_url }}" alt="" width="152" height="65">
+      <img class="site-logo site-logo--dark" src="{{ '/assets/images/mfmp-docencia-logo-dark.svg' | relative_url }}" alt="" width="152" height="65">
     </a>
     <div class="header-actions">
       <nav aria-label="{% if page.course_id %}Navegación del curso{% else %}Navegación principal{% endif %}">

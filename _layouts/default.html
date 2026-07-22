@@ -19,8 +19,8 @@
       }
     }());
   </script>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <script src="{{ '/assets/js/theme.js' | relative_url }}" defer></script>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.asset_version }}">
+  <script src="{{ '/assets/js/theme.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 </head>
 <body>
   {% include header.html %}
