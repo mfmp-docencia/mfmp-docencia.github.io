@@ -9,8 +9,9 @@
     <a class="site-brand" href="{{ brand_url | relative_url }}" aria-label="{{ site.title }}, inicio">
       <img src="{{ '/assets/images/mfmp-docencia-logo.svg' | relative_url }}" alt="" width="152" height="65">
     </a>
-    <nav aria-label="{% if page.course_id %}Navegación del curso{% else %}Navegación principal{% endif %}">
-      <ul class="site-nav">
+    <div class="header-actions">
+      <nav aria-label="{% if page.course_id %}Navegación del curso{% else %}Navegación principal{% endif %}">
+        <ul class="site-nav">
         {% if page.course_id %}
           {% assign course_url = '/' | append: page.course_id | append: '/' %}
           {% assign calendar_url = course_url %}
@@ -39,7 +40,18 @@
             </li>
           {% endfor %}
         {% endif %}
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
+        <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+        </svg>
+        <span class="theme-label">Modo oscuro</span>
+      </button>
+    </div>
   </div>
 </header>
