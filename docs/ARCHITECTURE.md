@@ -163,7 +163,7 @@ La organización del repositorio debe reflejar directamente el modelo de dominio
 │       └── editions/
 │           └── <edition-id>/
 │               ├── index.md
-│               ├── classes/
+│               ├── classes/     (cuando exista contenido narrativo)
 │               ├── activities/
 │               └── resources/
 ├── docs/
@@ -186,6 +186,8 @@ El archivo `index.md` del curso contiene su definición principal. El directorio
 Contiene exclusivamente información dependiente de una ejecución temporal del curso. Cada edición utiliza un identificador que la distingue dentro del curso y mantiene sus propias clases, planificación, actividades y recursos.
 
 Una edición no debe copiar archivos desde `content/`. Debe referenciar o vincular el contenido permanente que corresponda.
+
+La colección estructurada de clases se mantiene en `_data/edition_classes.yml`. El directorio `classes/` se crea únicamente cuando una clase publicada necesita contenido narrativo en Markdown; no es obligatorio mientras las clases solo tengan metadatos.
 
 ### `_layouts/` y `_includes/`
 
@@ -263,6 +265,7 @@ Los errores de compilación deben corregirse en las fuentes del repositorio. No 
 - El contenido académico no debe depender de una presentación particular para conservar su significado.
 - Las decisiones de presentación global se mantienen separadas del contenido docente.
 - La navegación global se presenta en el header. Dentro del contexto de un curso, la navegación se traslada a una barra lateral jerárquica con Inicio, Calendario, Contenidos, unidades, clases publicadas, Actividades, Recursos y Contáctame. Las unidades se leen desde el curso; las clases, Actividades y Recursos se leen desde la edición vigente.
+- El estado activo de una unidad o clase se deriva de su ancla en la URL. Las clases en estado `draft` o `archived` no se incorporan a la navegación.
 - En pantallas pequeñas, la barra lateral se presenta como un índice desplegable para no desplazar excesivamente el contenido principal.
 
 ### Cambios y colaboración

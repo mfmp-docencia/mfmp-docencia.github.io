@@ -1,6 +1,6 @@
 - edition_id: tda-301-2026-1
   events:
-    - { id: example-class-01, starts_on: 2026-03-17, starts_at: "18:30", ends_at: "21:30", type: class, type_label: Clase, title: "Clase de ejemplo 1", status: example }
+    - { id: example-class-01, class_id: example-clase-1, starts_on: 2026-03-17, starts_at: "18:30", ends_at: "21:30", type: class, type_label: Clase, title: "Clase de ejemplo 1", status: example }
     - { id: example-class-02, starts_on: 2026-03-19, starts_at: "18:30", ends_at: "21:30", type: class, type_label: Clase, title: "Clase de ejemplo 2", status: example }
     - { id: example-class-03, starts_on: 2026-03-18, starts_at: "18:30", ends_at: "21:30", type: class, type_label: Clase, title: "Clase de ejemplo 3", status: example }
     - { id: example-class-04, starts_on: 2026-03-24, starts_at: "18:30", ends_at: "21:30", type: class, type_label: Clase, title: "Clase de ejemplo 4", status: example }

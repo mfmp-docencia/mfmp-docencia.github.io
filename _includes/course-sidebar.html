@@ -19,7 +19,7 @@
 <aside class="course-sidebar" aria-label="Índice del curso">
   <details class="course-sidebar-disclosure" open>
     <summary>Índice del curso <span aria-hidden="true">↓</span></summary>
-    <nav aria-label="Navegación del curso">
+    <nav aria-label="Navegación del curso" data-course-sidebar-nav data-content-path="{{ sidebar_content_url | relative_url }}">
       <ul class="course-sidebar-nav">
         <li><a href="{{ sidebar_course_url | relative_url }}"{% if page.url == sidebar_course_url %} aria-current="page"{% endif %}>Inicio</a></li>
         <li><a href="{{ sidebar_calendar_url | relative_url }}"{% if page.url == sidebar_calendar_url %} aria-current="page"{% endif %}>Calendario</a></li>
@@ -27,17 +27,17 @@
           <a href="{{ sidebar_content_url | relative_url }}"{% if page.url == sidebar_content_url %} aria-current="page"{% endif %}>Contenidos</a>
           {% for course_content in site.data.course_content %}
             {% if course_content.course_id == sidebar_course_id %}
-              <ul class="course-sidebar-units">
+              <ul class="course-sidebar-units" aria-label="Unidades del curso">
                 {% for unit in course_content.units %}
                   <li>
-                    <a href="{{ sidebar_content_url | append: '#' | append: unit.id | relative_url }}">Unidad {{ unit.number }}</a>
-                    <ul class="course-sidebar-classes">
+                    <a href="{{ sidebar_content_url | append: '#' | append: unit.id | relative_url }}" data-course-anchor="{{ unit.id }}">Unidad {{ unit.number }}</a>
+                    <ul class="course-sidebar-classes" aria-label="Clases publicadas de la Unidad {{ unit.number }}">
                       {% for edition_classes in site.data.edition_classes %}
                         {% if edition_classes.edition_id == sidebar_edition_id %}
                           {% for class in edition_classes.classes %}
                             {% if class.unit_id == unit.id %}
                               {% if class.status == 'publish' %}
-                                <li><a href="{{ sidebar_content_url | append: '#' | append: class.id | relative_url }}">{{ class.title }}</a></li>
+                                <li><a href="{{ sidebar_content_url | append: '#' | append: class.id | relative_url }}" data-course-anchor="{{ class.id }}">{{ class.title }}</a></li>
                               {% endif %}
                             {% endif %}
                           {% endfor %}

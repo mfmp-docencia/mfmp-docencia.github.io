@@ -1,7 +1,9 @@
 # Working with Codex
 
 ## Mission
-Describe brevemente el propósito del proyecto y el rol de Codex.
+MFMP Docencia publica conocimiento docente reutilizable mediante GitHub Pages y mantiene separada la definición permanente de un curso de la planificación particular de sus ediciones.
+
+Codex colabora en la implementación, validación y documentación del proyecto. Debe preservar el modelo `Course`–`Edition`, evitar datos académicos inventados y mantener cada cambio dentro del alcance autorizado por la persona responsable del repositorio.
 
 ## Core Principles
 - No modificar la arquitectura sin autorización.
@@ -23,3 +25,6 @@ Describe brevemente el propósito del proyecto y el rol de Codex.
 - ¿Respeta la arquitectura?
 - ¿Rompe compatibilidad?
 - ¿Actualizó la documentación si era necesario?
+- ¿Mantiene separados los datos permanentes y temporales?
+- ¿Valida YAML, front matter, referencias y enlaces?
+- ¿Excluye archivos locales o generados, como `.DS_Store`?
