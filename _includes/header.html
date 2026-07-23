@@ -1,8 +1,9 @@
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 <header class="site-header">
   <div class="container header-inner">
-    {% if page.course_id %}
-      {% assign brand_url = '/' | append: page.course_id | append: '/' %}
+    {% assign navigation_course_id = page.course_id | default: page.navigation_course_id %}
+    {% if navigation_course_id %}
+      {% assign brand_url = '/' | append: navigation_course_id | append: '/' %}
     {% else %}
       {% assign brand_url = '/' %}
     {% endif %}
@@ -11,13 +12,13 @@
       <img class="site-logo site-logo--dark" src="{{ '/assets/images/mfmp-docencia-logo-dark.svg' | relative_url }}" alt="" width="152" height="65">
     </a>
     <div class="header-actions">
-      <nav aria-label="{% if page.course_id %}Navegación del curso{% else %}Navegación principal{% endif %}">
+      <nav aria-label="{% if navigation_course_id %}Navegación del curso{% else %}Navegación principal{% endif %}">
         <ul class="site-nav">
-        {% if page.course_id %}
-          {% assign course_url = '/' | append: page.course_id | append: '/' %}
+        {% if navigation_course_id %}
+          {% assign course_url = '/' | append: navigation_course_id | append: '/' %}
           {% assign calendar_url = course_url %}
           {% for edition in site.data.editions %}
-            {% if edition.course_id == page.course_id %}
+            {% if edition.course_id == navigation_course_id %}
               {% if edition.current %}
                 {% assign calendar_url = course_url | append: edition.path | append: '/' %}
               {% endif %}
