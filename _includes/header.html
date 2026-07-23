@@ -12,38 +12,19 @@
       <img class="site-logo site-logo--dark" src="{{ '/assets/images/mfmp-docencia-logo-dark.svg' | relative_url }}" alt="" width="152" height="65">
     </a>
     <div class="header-actions">
+      {% if navigation_course_id %}
+      {% else %}
       <nav aria-label="{% if navigation_course_id %}Navegación del curso{% else %}Navegación principal{% endif %}">
         <ul class="site-nav">
-        {% if navigation_course_id %}
-          {% assign course_url = '/' | append: navigation_course_id | append: '/' %}
-          {% assign calendar_url = course_url %}
-          {% for edition in site.data.editions %}
-            {% if edition.course_id == navigation_course_id %}
-              {% if edition.current %}
-                {% assign calendar_url = course_url | append: edition.path | append: '/' %}
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-          {% assign contact_url = '/contacto/' %}
-          <li>
-            <a href="{{ course_url | relative_url }}"{% if page.url == course_url %} aria-current="page"{% endif %}>Inicio</a>
-          </li>
-          <li>
-            <a href="{{ calendar_url | relative_url }}"{% if page.url == calendar_url %} aria-current="page"{% endif %}>Calendario</a>
-          </li>
-          <li>
-            <a href="{{ contact_url | relative_url }}"{% if page.url == contact_url %} aria-current="page"{% endif %}>Contáctame</a>
-          </li>
-        {% else %}
           {% for item in site.data.navigation %}
             {% assign item_url = item.url | relative_url %}
             <li>
               <a href="{{ item_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
             </li>
           {% endfor %}
-        {% endif %}
         </ul>
       </nav>
+      {% endif %}
       <button class="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
         <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>

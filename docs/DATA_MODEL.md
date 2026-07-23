@@ -34,6 +34,14 @@ Cada registro incluye:
 - `code`: código académico conocido del curso.
 - `name`: nombre público del curso.
 - `career_id`: referencia al `id` de un registro en `careers.yml`.
+- `plan_year`: año del plan de estudios.
+- `semester`: semestre curricular.
+- `class_hours`: horas de clases definidas por el programa.
+- `credits`: créditos SCT-AIEP.
+- `modality`: modalidad oficial.
+- `prerequisite`: módulo prerrequisito, cuando corresponda.
+- `profile_competency_contribution`: competencia del perfil de egreso a la que tributa el curso.
+- `competency_unit`: unidad de competencia permanente declarada por el programa.
 
 No se deben incorporar aquí periodos, fechas ni otra información propia de una ejecución. El nombre de TDA-301 se toma de la información publicada en la portada del proyecto.
 
@@ -48,6 +56,8 @@ Cada registro incluye:
 - `period`: periodo al que corresponde la ejecución.
 - `path`: segmento estable de la URL pública de la edición dentro del curso.
 - `current`: indica cuál edición debe enlazarse como vigente desde la navegación del curso.
+- `academic_calendar_period_id`: referencia al periodo institucional aplicable definido en `academic_calendar.yml`.
+- `academic_calendar_event_ids`: lista de eventos institucionales relevantes durante la ejecución de la edición.
 - `starts_on`: fecha de inicio, cuando se conozca.
 - `ends_on`: fecha de término, cuando se conozca.
 
@@ -76,15 +86,103 @@ El archivo declara:
 - `updated_on`: fecha de vigencia o actualización de la fuente.
 - `periods`: agrupaciones de eventos para su presentación.
 
+Cada periodo incluye:
+
+- `id`: identificador estable que permite relacionarlo con una edición.
+- `title`: nombre público del periodo académico.
+- `events`: lista de hitos institucionales correspondientes.
+
 Cada evento incluye:
 
+- `id`: identificador estable y único dentro del calendario académico.
 - `starts_on`: fecha de inicio en formato ISO 8601.
 - `ends_on`: fecha de término en formato ISO 8601, cuando el evento comprende más de un día.
 - `title`: nombre breve del hito institucional.
 - `detail`: aclaración opcional y breve.
 - `type`: categoría de presentación, como `academic`, `holiday` o `pause`.
 
-El calendario académico institucional no sustituye la planificación de una `Edition`. Las clases y actividades de una ejecución concreta continúan bajo `courses/<course-id>/editions/<edition-id>/`.
+El calendario académico institucional no sustituye la planificación de una `Edition`. Se presenta como información complementaria y desplegable dentro de la página de la edición relacionada. `academic_calendar_period_id` identifica el periodo y `academic_calendar_event_ids` limita la presentación a las fechas institucionales relevantes para esa ejecución. Las clases y actividades continúan bajo `courses/<course-id>/editions/<edition-id>/`. No existe una página global independiente para el calendario académico.
+
+### `_data/planning.yml`
+
+Contiene los eventos temporales que componen la planificación visible de cada edición. Cada planificación declara:
+
+- `edition_id`: referencia al `id` de la edición propietaria.
+- `events`: lista ordenable de clases, actividades y evaluaciones.
+
+Cada evento incluye:
+
+- `id`: identificador estable y único dentro de la planificación.
+- `starts_on`: fecha ISO 8601 utilizada por las vistas semanal y mensual.
+- `starts_at`: hora de inicio opcional en formato `HH:MM`.
+- `ends_at`: hora de término opcional en formato `HH:MM`.
+- `type`: tipo semántico del evento, actualmente `class`, `activity` o `assessment`. La cuadrícula también presenta los eventos institucionales referenciados con tipos `holiday` y `pause`.
+- `type_label`: etiqueta pública en español correspondiente al tipo.
+- `title`: nombre breve del evento.
+- `status`: estado de confirmación. Los datos demostrativos utilizan `example`.
+- `class_id`: referencia opcional a una clase de `edition_classes.yml` cuando `type` es `class` y la clase ya está confirmada.
+- `activity_id`: referencia opcional a una actividad de `edition_activities.yml` cuando `type` es `activity` o `assessment`.
+
+La vista semanal y la vista mensual se generan desde los mismos eventos; no mantienen calendarios duplicados. La cuadrícula incorpora además los eventos del calendario académico incluidos en `academic_calendar_event_ids`, sin copiar sus fechas a `planning.yml`. El campo semántico `type` controla su variante visual: por ejemplo, `holiday` utiliza el color coral de la identidad y `pause` una variante neutra. No se almacenan colores literales en los datos.
+
+Ambas vistas utilizan una cuadrícula académica de lunes a sábado y omiten el domingo. Para cursos de hasta tres meses, todos los eventos de la edición se publican junto con la página y el filtrado ocurre en el navegador.
+
+Mientras una fecha no esté confirmada, el evento debe declarar `status: example`, utilizar un `id` que comience con `example-` y mostrarse explícitamente como demostración. Los ejemplos deben reemplazarse o eliminarse antes de considerar publicada la planificación definitiva.
+
+### `_data/course_content.yml`
+
+Define la estructura académica permanente de cada curso. Cada registro declara:
+
+- `course_id`: referencia al curso propietario.
+- `units`: unidades que organizan el contenido permanente.
+
+`units` es una colección variable: un curso puede declarar una, dos o tres unidades —o la cantidad que requiera su definición confirmada— sin modificar la plantilla de navegación.
+
+Cada unidad incluye:
+
+- `id`: identificador estable dentro del curso.
+- `number`: número ordinal que se presenta como `Unidad X`.
+- `name`: nombre público de la unidad.
+- `class_hours`: horas de clases asignadas a la unidad.
+- `expected_learnings`: colección de aprendizajes esperados de la unidad.
+- `status`: ciclo de publicación de la unidad.
+
+Cada aprendizaje esperado incluye `id`, `number`, `statement` y una lista `evaluation_criteria`. Cada criterio conserva su `code` oficial y su `statement` por separado. La interfaz muestra únicamente el texto con un bullet, mientras el código queda disponible en los datos para mantener la trazabilidad con el programa. Los criterios se almacenan dentro del aprendizaje al que evalúan y no directamente en la unidad.
+
+El programa oficial TDA301, plan 2022, define dos unidades de 36 horas y tres aprendizajes esperados por unidad. El programa no establece una distribución clase a clase; esa distribución pertenece a cada edición.
+
+### `_data/edition_classes.yml`
+
+Define las clases concretas de cada ejecución. Cada registro declara `edition_id` y una colección `classes`. Cada clase incluye:
+
+- `id`: identificador estable y único dentro de la edición.
+- `unit_id`: referencia a la unidad permanente que desarrolla.
+- `number`: orden público de la clase dentro de la edición.
+- `title`: nombre público de la clase.
+- `status`: ciclo de publicación.
+
+`status` solo admite:
+
+- `draft`: la clase está en preparación y no aparece en la navegación ni en la página pública de contenidos.
+- `publish`: la clase está habilitada y visible para los estudiantes.
+- `archived`: la clase se conserva en los datos como referencia histórica, pero no se muestra públicamente.
+
+Solo las clases con `status: publish` se incluyen en la navegación y en la presentación pública de la edición. La interfaz agrupa cada clase bajo la unidad referenciada por `unit_id`. Así, una edición puede distribuir una unidad en `x` clases y la siguiente en `x + 1` sin modificar ni duplicar la unidad oficial. El contenido narrativo de una clase se almacena bajo `courses/<course-id>/editions/<edition-path>/classes/`.
+
+### `_data/edition_activities.yml`
+
+Define las actividades particulares de cada ejecución. Cada registro declara `edition_id` y una colección `activities`. Cada actividad incluye:
+
+- `id`: identificador estable dentro del curso.
+- `title`: nombre público de la actividad.
+- `description`: descripción breve para el listado.
+- `status`: ciclo de publicación `draft`, `publish` o `archived`, con el mismo comportamiento definido para las clases.
+- `unit_id`: referencia opcional a la unidad relacionada.
+- `class_id`: referencia opcional a una clase de la misma edición.
+
+Solo las actividades con `status: publish` aparecen en la página pública de su edición. Cuando una actividad tiene una fecha, esta también se representa como un evento de `planning.yml` relacionado con la misma edición.
+
+La página `Recursos` también pertenece a la edición porque sus materiales pueden variar entre ejecuciones. Actividades y Recursos se almacenan bajo `courses/<course-id>/editions/<edition-path>/` y sus rutas públicas siguen la forma `/<course-id>/<edition-path>/actividades/` y `/<course-id>/<edition-path>/recursos/`.
 
 ### `_data/navigation.yml`
 
@@ -95,22 +193,36 @@ Cada elemento incluye:
 - `label`: texto visible del enlace.
 - `url`: ruta del destino dentro del sitio.
 
-La navegación general contiene las entradas `Inicio`, `Cursos`, `Calendario` y `Acerca de`. No contiene el catálogo de carreras, cursos o ediciones; esas relaciones pertenecen a sus respectivos archivos de datos.
+La navegación general contiene las entradas `Inicio`, `Cursos` y `Acerca de`. El calendario pertenece al contexto temporal de una edición y no se publica como opción global. La navegación principal tampoco contiene el catálogo de carreras o ediciones; esas relaciones pertenecen a sus respectivos archivos de datos.
 
-## Relación entre Career, Course y Edition
+## Relaciones principales del dominio
 
-Las entidades forman una jerarquía de referencias:
+Las entidades permanentes y temporales forman esta estructura de referencias:
 
 ```text
 Career
 └── Course
+    ├── Unit
     └── Edition
+        ├── Class ──referencia──> Unit
+        ├── PlanningEvent ──referencia──> Class | Activity
+        ├── Activity
+        └── Resource
+
+AcademicCalendarPeriod
+└── AcademicCalendarEvent
+    └── referenciado por Edition
 ```
 
 - Una `Career` puede estar relacionada con varios `Course`.
 - Un `Course` referencia una `Career` mediante `career_id`.
+- Un `Course` puede organizar su contenido permanente en varias `Unit`.
 - Un `Course` puede tener varias `Edition`.
 - Una `Edition` referencia un `Course` mediante `course_id`.
+- Una `Edition` posee colecciones de `Class`, `PlanningEvent`, `Activity` y recursos propios.
+- Cada `Class` referencia una `Unit` del curso mediante `unit_id`.
+- Un `PlanningEvent` puede referenciar una clase o actividad de su misma edición.
+- Una `Edition` referencia los eventos institucionales aplicables sin duplicarlos.
 
 La relación se declara desde la entidad dependiente. Por esta razón, `careers.yml` no mantiene una lista duplicada de cursos y `courses.yml` no mantiene una lista duplicada de ediciones.
 
@@ -119,7 +231,11 @@ Para el ejemplo inicial:
 ```text
 tecnico-analisis-datos
 └── tda-301
+    ├── tda-301-unidad-1
+    ├── tda-301-unidad-2
     └── tda-301-2026-1
+        ├── example-clase-1 ──unit_id──> tda-301-unidad-1
+        └── example-class-01 ──class_id──> example-clase-1
 ```
 
 Cada registro debe contener únicamente información académica confirmada. Si un valor todavía no se conoce, debe marcarse explícitamente como pendiente o `null` y no sustituirse por un dato supuesto.
@@ -133,9 +249,10 @@ Corresponde almacenar en Markdown:
 - La presentación y descripción desarrollada de un curso.
 - Sus objetivos y contenido permanente.
 - La organización narrativa del contenido docente.
-- El contenido y los recursos reutilizables del curso.
+- El contenido permanente de las unidades del curso.
+- El contenido desarrollado de las clases, actividades y recursos dentro de su edición.
 - La planificación desarrollada de una edición cuando requiera más que metadatos breves.
-- Las páginas globales de presentación, calendario institucional y contacto.
+- Las páginas globales de presentación y contacto.
 
 El contenido permanente debe ubicarse bajo el curso correspondiente. El contenido temporal debe ubicarse bajo su edición. Una edición debe referenciar el contenido del curso en lugar de duplicarlo.
 

@@ -2,7 +2,5 @@
   url: /
 - label: Cursos
   url: /courses/
-- label: Calendario
-  url: /calendario/
 - label: Acerca de
   url: /about/

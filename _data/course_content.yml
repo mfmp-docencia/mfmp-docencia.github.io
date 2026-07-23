@@ -1,0 +1,69 @@
+- course_id: tda-301
+  source: Programa de Módulo TDA301, plan 2022
+  units:
+    - id: tda-301-unidad-1
+      number: 1
+      name: Programación para el procesamiento de datos
+      class_hours: 36
+      status: publish
+      expected_learnings:
+        - id: tda-301-ae-1
+          number: 1
+          statement: Relacionan funciones y elementos del procesamiento de datos mediante Python en contexto de la toma de decisiones.
+          evaluation_criteria:
+            - { code: "1.1", statement: "Identifica funciones principales del procesamiento de datos en contexto del análisis de datos." }
+            - { code: "1.2", statement: "Organiza datos a través de Python en función del análisis de resultados." }
+            - { code: "1.3", statement: "Relaciona Anaconda con la creación de entorno virtual de desarrollo Python, considerando versiones particulares." }
+            - { code: "1.4", statement: "Relaciona archivos, registros y campos en el contexto del análisis de datos para la toma de decisiones." }
+            - { code: "1.5", statement: "Detecta las causas que originan problemas de acuerdo a parámetros establecidos y en contextos propios de su actividad." }
+        - id: tda-301-ae-2
+          number: 2
+          statement: Configuran los elementos básicos de un entorno virtual de desarrollo para análisis de datos utilizando Python.
+          evaluation_criteria:
+            - { code: "1.6", statement: "Relaciona los diferentes tipos de datos en función de su procesamiento y análisis considerando herramientas de Anaconda." }
+            - { code: "1.7", statement: "Instala comando PIP para gestión de packages (librerías) de Python, de acuerdo al tipo de análisis requerido." }
+            - { code: "1.8", statement: "Prueba herramientas de librerías Python en entorno virtual de Anaconda, considerando su función en el análisis y procesamiento de datos." }
+            - { code: "1.9", statement: "Determina la relevancia de resultados de las visualizaciones estadísticas obtenidas desde un programa en el contexto de la toma de decisiones." }
+            - { code: "1.10", statement: "Demuestra autonomía en actividades y funciones especializadas en diversos contextos." }
+        - id: tda-301-ae-3
+          number: 3
+          statement: Implementan base de datos con SQL y su conexión con Python en el contexto del análisis de datos.
+          evaluation_criteria:
+            - { code: "1.11", statement: "Implementa una base de datos bajo SGBD mediante un lenguaje de consultas estructurado SQL." }
+            - { code: "1.12", statement: "Manipula información basándose en comandos de consultas SQL, para gestión de base de datos." }
+            - { code: "1.13", statement: "Organiza información de consultas a bases de datos basado en SQL en el contexto del análisis de datos." }
+            - { code: "1.14", statement: "Realiza conexión a SQL desde Python mediante métodos y procedimientos de conexión de datos, en el contexto del análisis de datos." }
+            - { code: "1.15", statement: "Detecta las causas que originan problemas de acuerdo a parámetros establecidos y en contextos propios de su actividad." }
+    - id: tda-301-unidad-2
+      number: 2
+      name: Programación enfocada en modelamiento
+      class_hours: 36
+      status: publish
+      expected_learnings:
+        - id: tda-301-ae-4
+          number: 4
+          statement: Analizan el modelamiento de los datos en función del proyecto y su metodología.
+          evaluation_criteria:
+            - { code: "2.1", statement: "Identifica la relevancia del modelamiento de los datos en un proyecto de análisis de datos de acuerdo con objetivos." }
+            - { code: "2.2", statement: "Diferencia tipos de modelamiento de datos y sus funciones en el ciclo de vida de desarrollo." }
+            - { code: "2.3", statement: "Identifica niveles de abstracción de datos para proyectos basados en arquitectura de base de datos." }
+            - { code: "2.4", statement: "Relaciona el proceso y las técnicas del modelo de datos con su validez en el logro del análisis, en el contexto de la toma de decisiones." }
+            - { code: "2.5", statement: "Establece una comunicación oral y escrita adecuada con sus interlocutores a través de diversos medios y soportes." }
+        - id: tda-301-ae-5
+          number: 5
+          statement: Analizan la integración de datos basado en ETL considerando variedad de fuentes, en el contexto de análisis de datos.
+          evaluation_criteria:
+            - { code: "2.6", statement: "Caracteriza el proceso de integración basado en ETL de acuerdo con las fases del proceso." }
+            - { code: "2.7", statement: "Diferencia herramientas para ETL de acuerdo con su función en el contexto de análisis de datos." }
+            - { code: "2.8", statement: "Relaciona funciones, procesos y técnicas de integración de datos con ETL, en el contexto de la integración de múltiples fuentes de datos." }
+            - { code: "2.9", statement: "Determina requerimientos asociados a datos de múltiples fuentes considerando su uso y extracción, en función del análisis requerido." }
+            - { code: "2.10", statement: "Demuestra autonomía en actividades y funciones especializadas en diversos contextos." }
+        - id: tda-301-ae-6
+          number: 6
+          statement: Programan en Python rutinas en un entorno virtual de desarrollo para obtención de datos de diversas fuentes, de acuerdo con el requerimiento de análisis.
+          evaluation_criteria:
+            - { code: "2.11", statement: "Interpreta la extracción de datos, considerando las etapas de procesos ETL, en el marco del análisis de datos." }
+            - { code: "2.12", statement: "Determina factibilidad de uso y extracción de datos en función de su formato y fuente de origen, de acuerdo con el análisis requerido." }
+            - { code: "2.13", statement: "Programa dataframe en Python mediante archivos HTML, XML, JSON, base de datos y CSV, en el contexto de la recolección de datos." }
+            - { code: "2.14", statement: "Interpreta técnicas de extracción de datos, en función de la fuente de origen y el análisis requerido." }
+            - { code: "2.15", statement: "Detecta las causas que originan problemas de acuerdo a parámetros establecidos y en contextos propios de su actividad." }

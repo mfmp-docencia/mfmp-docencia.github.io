@@ -21,12 +21,24 @@
   </script>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.asset_version }}">
   <script src="{{ '/assets/js/theme.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+  {% if page.planning_calendar %}<script src="{{ '/assets/js/planning-calendar.js' | relative_url }}?v={{ site.asset_version }}" defer></script>{% endif %}
 </head>
 <body>
   {% include header.html %}
-  <main id="contenido" class="site-main">
-    {{ content }}
-  </main>
+  {% assign layout_course_id = page.course_id | default: page.navigation_course_id %}
+  {% if layout_course_id %}
+    <div class="container course-shell">
+      {% include course-sidebar.html %}
+      <main id="contenido" class="site-main course-main">
+        {{ content }}
+      </main>
+    </div>
+  {% else %}
+    <main id="contenido" class="site-main">
+      {{ content }}
+    </main>
+  {% endif %}
   {% include footer.html %}
+  {% if layout_course_id %}<script src="{{ '/assets/js/course-sidebar.js' | relative_url }}?v={{ site.asset_version }}" defer></script>{% endif %}
 </body>
 </html>

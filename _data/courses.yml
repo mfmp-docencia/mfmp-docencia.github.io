@@ -2,3 +2,11 @@
   code: TDA-301
   name: "Taller de Programación para el Análisis de Datos"
   career_id: tecnico-analisis-datos
+  plan_year: 2022
+  semester: 3
+  class_hours: 72
+  credits: 4
+  modality: Presencial
+  prerequisite: Bases de datos
+  profile_competency_contribution: Procesar datos mediante herramientas de programación y proceso ETL desde múltiples fuentes de información, considerando distintos volúmenes, ciclo de vida y su tratamiento de manera local como en la nube.
+  competency_unit: Realizar diseño y construcción de procesos ETL en base a un lenguaje de programación, considerando modelos de datos predeterminados.
