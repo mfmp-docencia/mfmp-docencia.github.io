@@ -163,7 +163,7 @@ La organización del repositorio debe reflejar directamente el modelo de dominio
 │       └── editions/
 │           └── <edition-id>/
 │               ├── index.md
-│               ├── classes/
+│               ├── classes/     (cuando exista contenido narrativo)
 │               ├── activities/
 │               └── resources/
 ├── docs/
@@ -186,6 +186,8 @@ El archivo `index.md` del curso contiene su definición principal. El directorio
 Contiene exclusivamente información dependiente de una ejecución temporal del curso. Cada edición utiliza un identificador que la distingue dentro del curso y mantiene sus propias clases, planificación, actividades y recursos.
 
 Una edición no debe copiar archivos desde `content/`. Debe referenciar o vincular el contenido permanente que corresponda.
+
+La colección estructurada de clases se mantiene en `_data/edition_classes.yml`. El directorio `classes/` se crea únicamente cuando una clase publicada necesita contenido narrativo en Markdown; no es obligatorio mientras las clases solo tengan metadatos.
 
 ### `_layouts/` y `_includes/`
 

@@ -173,7 +173,7 @@ Solo las clases con `status: publish` se incluyen en la navegación y en la pres
 
 Define las actividades particulares de cada ejecución. Cada registro declara `edition_id` y una colección `activities`. Cada actividad incluye:
 
-- `id`: identificador estable dentro del curso.
+- `id`: identificador estable dentro de la edición.
 - `title`: nombre público de la actividad.
 - `description`: descripción breve para el listado.
 - `status`: ciclo de publicación `draft`, `publish` o `archived`, con el mismo comportamiento definido para las clases.
