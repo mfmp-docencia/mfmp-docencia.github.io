@@ -659,12 +659,70 @@ h2 {
 
 .lesson-content > :first-child { margin-top: 0; }
 
+.lesson-viewer {
+  position: relative;
+}
+
 .lesson-pages {
   min-height: clamp(18rem, 48vw, 34rem);
   padding: clamp(1rem, 3vw, 2rem);
   border: 1px solid var(--line);
   border-radius: .45rem;
   background: var(--paper);
+}
+
+.lesson-fullscreen-button {
+  position: absolute;
+  z-index: 2;
+  top: .75rem;
+  right: .75rem;
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: .55rem;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  color: var(--accent-dark);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  cursor: pointer;
+}
+
+.lesson-fullscreen-button:hover { background: var(--surface); }
+
+.lesson-fullscreen-button svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.lesson-fullscreen-button.is-fullscreen svg { transform: rotate(180deg); }
+
+.lesson-viewer:fullscreen {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  color: var(--ink);
+  background: var(--page);
+}
+
+.lesson-viewer:fullscreen .lesson-pages {
+  min-height: 0;
+  overflow: auto;
+}
+
+.lesson-viewer:fullscreen .lesson-page {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.lesson-viewer:fullscreen .lesson-viewer-controls {
+  width: min(100%, 75rem);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .lesson-page > :first-child { margin-top: 0; }

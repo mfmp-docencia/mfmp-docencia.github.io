@@ -56,6 +56,8 @@ Contenido siguiente.
 
 El visor presenta una página a la vez, comienza en la primera e incorpora los controles Anterior, Siguiente y `X de Y`. Las flechas izquierda y derecha también permiten navegar cuando el visor tiene el foco.
 
+El botón ubicado en la esquina superior derecha permite maximizar únicamente el visor y sus controles. En pantalla completa mantiene una página visible, conserva la navegación y permite salir con el mismo botón o con la tecla `Esc`. Cuando el navegador no ofrece la API correspondiente, el botón se oculta.
+
 Si JavaScript no está disponible, el contenido conserva su orden de lectura vertical. Las actividades y los recursos relacionados se presentan después del visor y solo aparecen cuando existen registros publicados.
 
 Los documentos PDF o PPT deben importarse al formato canónico Markdown. El proceso puede extraer texto e imágenes y agregar los separadores automáticamente; el archivo original puede conservarse como descarga opcional, pero no constituye la fuente principal de publicación.
