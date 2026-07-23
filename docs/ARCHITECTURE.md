@@ -265,6 +265,7 @@ Los errores de compilación deben corregirse en las fuentes del repositorio. No 
 - El contenido académico no debe depender de una presentación particular para conservar su significado.
 - Las decisiones de presentación global se mantienen separadas del contenido docente.
 - La navegación global se presenta en el header. Dentro del contexto de un curso, la navegación se traslada a una barra lateral jerárquica con Inicio, Calendario, Contenidos, unidades, clases publicadas, Actividades, Recursos y Contáctame. Las unidades se leen desde el curso; las clases, Actividades y Recursos se leen desde la edición vigente.
+- El estado activo de una unidad o clase se deriva de su ancla en la URL. Las clases en estado `draft` o `archived` no se incorporan a la navegación.
 - En pantallas pequeñas, la barra lateral se presenta como un índice desplegable para no desplazar excesivamente el contenido principal.
 
 ### Cambios y colaboración

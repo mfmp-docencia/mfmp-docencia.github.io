@@ -216,12 +216,12 @@ a { color: inherit; }
 }
 
 .course-sidebar a:hover,
-.course-sidebar a[aria-current="page"] {
+.course-sidebar a[aria-current] {
   color: var(--ink);
   background: var(--surface);
 }
 
-.course-sidebar a[aria-current="page"] { border-left: .2rem solid var(--accent); }
+.course-sidebar a[aria-current] { border-left: .2rem solid var(--accent); }
 
 .course-sidebar-units { padding-left: .65rem !important; }
 .course-sidebar-classes { padding-left: .75rem !important; }
