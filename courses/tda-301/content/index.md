@@ -16,50 +16,12 @@ course_id: tda-301
   {% for course_content in site.data.course_content %}
     {% if course_content.course_id == page.course_id %}
       {% for unit in course_content.units %}
-        <article id="{{ unit.id }}" class="course-content-unit">
+        <article class="course-content-unit course-content-unit-summary">
           <p class="eyebrow">Unidad {{ unit.number }}</p>
           <h2>{{ unit.name }}</h2>
           <p class="unit-hours">{{ unit.class_hours }} horas de clases</p>
-          <div class="course-expected-learnings">
-            {% for expected_learning in unit.expected_learnings %}
-              <section id="{{ expected_learning.id }}" class="course-expected-learning">
-                <p class="eyebrow">Aprendizaje esperado {{ expected_learning.number }}</p>
-                <h3>{{ expected_learning.statement }}</h3>
-                <details class="evaluation-criteria">
-                  <summary>
-                    <span>Criterios de evaluación</span>
-                    <span class="evaluation-criteria-action" aria-hidden="true">Ver criterios ↓</span>
-                  </summary>
-                  <div class="evaluation-criteria-content">
-                    <ul>
-                      {% for criterion in expected_learning.evaluation_criteria %}
-                        <li>{{ criterion.statement }}</li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                </details>
-              </section>
-            {% endfor %}
-          </div>
-          <div class="course-class-tags" aria-label="Clases publicadas de la Unidad {{ unit.number }}">
-            {% for edition in site.data.editions %}
-              {% if edition.course_id == page.course_id %}
-                {% if edition.current %}
-                  {% for edition_classes in site.data.edition_classes %}
-                    {% if edition_classes.edition_id == edition.id %}
-                      {% for class in edition_classes.classes %}
-                        {% if class.unit_id == unit.id %}
-                          {% if class.status == 'publish' %}
-                            <span id="{{ class.id }}" class="course-class-tag">{{ class.title }}</span>
-                          {% endif %}
-                        {% endif %}
-                      {% endfor %}
-                    {% endif %}
-                  {% endfor %}
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-          </div>
+          <p>Consulta sus aprendizajes esperados y criterios de evaluación.</p>
+          <a class="button-link" href="{{ '/tda-301/contenidos/unidad-' | append: unit.number | append: '/' | relative_url }}">Ver Unidad {{ unit.number }}</a>
         </article>
       {% endfor %}
     {% endif %}

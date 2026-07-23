@@ -16,13 +16,10 @@
     if (!navigation) return;
 
     var anchorLinks = navigation.querySelectorAll('[data-course-anchor]');
-    var contentPath = navigation.dataset.contentPath;
-    var activeId = window.location.pathname === contentPath
-      ? window.location.hash.replace(/^#/, '')
-      : '';
+    var activeId = window.location.hash.replace(/^#/, '');
 
     anchorLinks.forEach(function (link) {
-      if (link.dataset.courseAnchor === activeId) {
+      if (window.location.pathname === link.dataset.coursePath && link.dataset.courseAnchor === activeId) {
         link.setAttribute('aria-current', 'location');
       } else {
         link.removeAttribute('aria-current');

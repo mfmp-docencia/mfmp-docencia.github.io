@@ -443,6 +443,20 @@ h2 {
   background: var(--surface);
 }
 
+.course-content-unit-summary {
+  display: grid;
+  justify-items: start;
+}
+
+.course-content-unit-summary > p:not(.eyebrow, .unit-hours) {
+  margin-top: .25rem;
+  color: var(--muted);
+}
+
+.course-content-unit-summary .button-link { margin-top: .75rem; }
+
+.unit-page-content { padding-top: clamp(1.25rem, 3vw, 2rem); }
+
 .course-overview {
   display: grid;
   gap: 1.5rem;
@@ -517,6 +531,7 @@ h2 {
   background: var(--paper);
 }
 
+.course-expected-learning h2,
 .course-expected-learning h3 {
   margin-top: .25rem;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
@@ -567,8 +582,19 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: .65rem;
+  padding: 0;
   margin-top: 1.25rem;
+  list-style: none;
 }
+
+.course-unit-classes {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: clamp(1.25rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.course-unit-classes h2 { margin-bottom: .35rem; }
+.course-unit-classes > p { margin: 0; color: var(--muted); }
 
 .course-class-tag {
   display: inline-flex;

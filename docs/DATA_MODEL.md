@@ -149,6 +149,8 @@ Cada unidad incluye:
 
 Cada aprendizaje esperado incluye `id`, `number`, `statement` y una lista `evaluation_criteria`. Cada criterio conserva su `code` oficial y su `statement` por separado. La interfaz muestra únicamente el texto con un bullet, mientras el código queda disponible en los datos para mantener la trazabilidad con el programa. Los criterios se almacenan dentro del aprendizaje al que evalúan y no directamente en la unidad.
 
+La página general de Contenidos funciona como índice breve. Cada unidad se publica en una página permanente del curso bajo `courses/<course-id>/content/unidad-<number>/`; la página lee sus datos desde esta colección y no los duplica en el archivo Markdown.
+
 El programa oficial TDA301, plan 2022, define dos unidades de 36 horas y tres aprendizajes esperados por unidad. El programa no establece una distribución clase a clase; esa distribución pertenece a cada edición.
 
 ### `_data/edition_classes.yml`
@@ -167,7 +169,7 @@ Define las clases concretas de cada ejecución. Cada registro declara `edition_i
 - `publish`: la clase está habilitada y visible para los estudiantes.
 - `archived`: la clase se conserva en los datos como referencia histórica, pero no se muestra públicamente.
 
-Solo las clases con `status: publish` se incluyen en la navegación y en la presentación pública de la edición. La interfaz agrupa cada clase bajo la unidad referenciada por `unit_id`. Así, una edición puede distribuir una unidad en `x` clases y la siguiente en `x + 1` sin modificar ni duplicar la unidad oficial. El contenido narrativo de una clase se almacena bajo `courses/<course-id>/editions/<edition-path>/classes/`.
+Solo las clases con `status: publish` se incluyen en la navegación y en el índice de clases de la unidad. Si una unidad no posee clases publicadas en la edición vigente, el índice no se presenta. La interfaz agrupa cada clase bajo la unidad referenciada por `unit_id`. Así, una edición puede distribuir una unidad en `x` clases y la siguiente en `x + 1` sin modificar ni duplicar la unidad oficial. El contenido narrativo de una clase se almacena bajo `courses/<course-id>/editions/<edition-path>/classes/`.
 
 ### `_data/edition_activities.yml`
 
