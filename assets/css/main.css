@@ -293,6 +293,7 @@ h2 {
 .course-card p:not(.course-code) { color: var(--muted); }
 
 .course-card p.career-tag,
+.page-header > p.career-tag,
 .career-tag {
   display: inline-block;
   width: fit-content;
