@@ -1,0 +1,82 @@
+{% for course_content in site.data.course_content %}
+  {% if course_content.course_id == page.course_id %}
+    {% for unit in course_content.units %}
+      {% if unit.id == page.unit_id %}
+        <header class="page-header container content-page-header">
+          <p class="eyebrow">Unidad {{ unit.number }}</p>
+          <h1>{{ unit.name }}</h1>
+          <p>{{ unit.class_hours }} horas de clases</p>
+        </header>
+
+        <article class="section container course-content-unit unit-page-content">
+          <div class="course-expected-learnings">
+            {% for expected_learning in unit.expected_learnings %}
+              <section id="{{ expected_learning.id }}" class="course-expected-learning">
+                <p class="eyebrow">Aprendizaje esperado {{ expected_learning.number }}</p>
+                <h2>{{ expected_learning.statement }}</h2>
+                <details class="evaluation-criteria">
+                  <summary>
+                    <span>Criterios de evaluación</span>
+                    <span class="evaluation-criteria-action" aria-hidden="true">Ver criterios ↓</span>
+                  </summary>
+                  <div class="evaluation-criteria-content">
+                    <ul>
+                      {% for criterion in expected_learning.evaluation_criteria %}
+                        <li>{{ criterion.statement }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </details>
+              </section>
+            {% endfor %}
+          </div>
+
+          {% assign has_published_classes = false %}
+          {% for edition in site.data.editions %}
+            {% if edition.course_id == page.course_id %}
+              {% if edition.current %}
+                {% for edition_classes in site.data.edition_classes %}
+                  {% if edition_classes.edition_id == edition.id %}
+                    {% for class in edition_classes.classes %}
+                      {% if class.unit_id == unit.id %}
+                        {% if class.status == 'publish' %}
+                          {% assign has_published_classes = true %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% if has_published_classes %}
+            <section class="course-unit-classes" aria-labelledby="{{ unit.id }}-classes-title">
+              <h2 id="{{ unit.id }}-classes-title">Clases publicadas</h2>
+              <p>Clases disponibles en la edición vigente.</p>
+              <ul class="course-class-tags">
+                {% for edition in site.data.editions %}
+                  {% if edition.course_id == page.course_id %}
+                    {% if edition.current %}
+                      {% for edition_classes in site.data.edition_classes %}
+                        {% if edition_classes.edition_id == edition.id %}
+                          {% for class in edition_classes.classes %}
+                            {% if class.unit_id == unit.id %}
+                              {% if class.status == 'publish' %}
+                                <li id="{{ class.id }}" class="course-class-tag">{{ class.title }}</li>
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </section>
+          {% endif %}
+        </article>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}

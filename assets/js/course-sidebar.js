@@ -16,18 +16,33 @@
     if (!navigation) return;
 
     var anchorLinks = navigation.querySelectorAll('[data-course-anchor]');
-    var contentPath = navigation.dataset.contentPath;
-    var activeId = window.location.pathname === contentPath
-      ? window.location.hash.replace(/^#/, '')
-      : '';
+    var unitBreadcrumb = document.querySelector('[data-breadcrumb-unit]');
+    var classBreadcrumbs = document.querySelectorAll('[data-breadcrumb-class]');
+    var activeId = window.location.hash.replace(/^#/, '');
+    var hasActiveClass = false;
 
     anchorLinks.forEach(function (link) {
-      if (link.dataset.courseAnchor === activeId) {
+      if (window.location.pathname === link.dataset.coursePath && link.dataset.courseAnchor === activeId) {
         link.setAttribute('aria-current', 'location');
+        hasActiveClass = true;
       } else {
         link.removeAttribute('aria-current');
       }
     });
+
+    classBreadcrumbs.forEach(function (item) {
+      var isActive = item.dataset.breadcrumbClass === activeId;
+      item.hidden = !isActive;
+      if (isActive) hasActiveClass = true;
+    });
+
+    if (unitBreadcrumb) {
+      if (hasActiveClass) {
+        unitBreadcrumb.removeAttribute('aria-current');
+      } else {
+        unitBreadcrumb.setAttribute('aria-current', 'page');
+      }
+    }
   }
 
   updateAnchorState();

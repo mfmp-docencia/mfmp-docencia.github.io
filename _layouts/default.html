@@ -30,6 +30,13 @@
     <div class="container course-shell">
       {% include course-sidebar.html %}
       <main id="contenido" class="site-main course-main">
+        {% if page.unit_id %}
+          {% include course-breadcrumbs.html %}
+        {% else %}
+          {% if page.breadcrumb_label %}
+            {% include course-breadcrumbs.html %}
+          {% endif %}
+        {% endif %}
         {{ content }}
       </main>
     </div>

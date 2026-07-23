@@ -436,12 +436,66 @@ h2 {
 .page-header.content-page-header { padding-bottom: clamp(1rem, 2vw, 1.5rem); }
 .content-page-header + .course-content-outline { padding-top: clamp(1.25rem, 3vw, 2rem); }
 
+.breadcrumbs {
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  padding-bottom: 0;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.breadcrumbs li + li::before {
+  content: "›";
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+.breadcrumbs a {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs [aria-current="page"] { color: var(--ink); }
+.breadcrumbs [aria-current="page"] a { color: inherit; }
+
+.breadcrumbs + .page-header { padding-top: clamp(1rem, 2vw, 1.5rem); }
+
 .course-content-unit {
   padding: clamp(1.25rem, 4vw, 2rem);
   border: 1px solid var(--line);
   border-radius: .65rem;
   background: var(--surface);
 }
+
+.course-content-unit-summary {
+  display: grid;
+  justify-items: start;
+}
+
+.course-content-unit-summary > p:not(.eyebrow, .unit-hours) {
+  margin-top: .25rem;
+  color: var(--muted);
+}
+
+.course-content-unit-summary .button-link { margin-top: .75rem; }
+
+.unit-page-content { padding-top: clamp(1.25rem, 3vw, 2rem); }
 
 .course-overview {
   display: grid;
@@ -517,6 +571,7 @@ h2 {
   background: var(--paper);
 }
 
+.course-expected-learning h2,
 .course-expected-learning h3 {
   margin-top: .25rem;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
@@ -567,8 +622,19 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: .65rem;
+  padding: 0;
   margin-top: 1.25rem;
+  list-style: none;
 }
+
+.course-unit-classes {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: clamp(1.25rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.course-unit-classes h2 { margin-bottom: .35rem; }
+.course-unit-classes > p { margin: 0; color: var(--muted); }
 
 .course-class-tag {
   display: inline-flex;

@@ -179,7 +179,7 @@ La raíz contiene la configuración de GitHub Pages, la portada del sitio y los 
 
 Contiene los cursos publicados por Project Classroom. Cada curso posee un identificador estable representado por su directorio.
 
-El archivo `index.md` del curso contiene su definición principal. El directorio `content/` contiene el conocimiento permanente asociado al curso. El directorio `editions/` agrupa sus distintas ediciones.
+El archivo `index.md` del curso contiene su definición principal. El directorio `content/` contiene el conocimiento permanente asociado al curso: su `index.md` funciona como índice y cada unidad publicada posee una página propia. El directorio `editions/` agrupa sus distintas ediciones.
 
 ### `courses/<course-id>/editions/`
 
@@ -265,7 +265,8 @@ Los errores de compilación deben corregirse en las fuentes del repositorio. No 
 - El contenido académico no debe depender de una presentación particular para conservar su significado.
 - Las decisiones de presentación global se mantienen separadas del contenido docente.
 - La navegación global se presenta en el header. Dentro del contexto de un curso, la navegación se traslada a una barra lateral jerárquica con Inicio, Calendario, Contenidos, unidades, clases publicadas, Actividades, Recursos y Contáctame. Las unidades se leen desde el curso; las clases, Actividades y Recursos se leen desde la edición vigente.
-- El estado activo de una unidad o clase se deriva de su ancla en la URL. Las clases en estado `draft` o `archived` no se incorporan a la navegación.
+- La unidad activa se deriva de su página permanente; la clase activa se deriva del ancla dentro de esa página. Cada página de unidad incorpora el índice de clases publicadas de la edición vigente. Las clases en estado `draft` o `archived` no se incorporan a la navegación ni generan una sección pública vacía.
+- Todas las páginas internas del curso presentan una ruta de navegación jerárquica mediante un `nav` accesible; Inicio se omite porque constituye la raíz. Las unidades incorporan el nivel intermedio Contenidos y, cuando una clase publicada se selecciona mediante su ancla, esta se agrega como último nivel. Esta ruta comunica ubicación, no progreso temporal.
 - En pantallas pequeñas, la barra lateral se presenta como un índice desplegable para no desplazar excesivamente el contenido principal.
 
 ### Cambios y colaboración
