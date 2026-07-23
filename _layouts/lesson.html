@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{% assign lesson = nil %}
+{% assign lesson_unit = nil %}
+{% for edition_classes in site.data.edition_classes %}
+  {% if edition_classes.edition_id == page.edition_id %}
+    {% for class in edition_classes.classes %}
+      {% if class.id == page.class_id %}
+        {% assign lesson = class %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+{% for course_content in site.data.course_content %}
+  {% if course_content.course_id == page.course_id %}
+    {% for unit in course_content.units %}
+      {% if unit.id == page.unit_id %}
+        {% assign lesson_unit = unit %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<header class="page-header container content-page-header lesson-header">
+  <p class="eyebrow">Unidad {{ lesson_unit.number }} · Clase {{ lesson.number }}</p>
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+</header>
+
+<article class="section container course-content-unit lesson-content">
+  <div class="lesson-pages" data-lesson-pages>
+    {{ content }}
+  </div>
+  {% include lesson-activities.html %}
+  {% include lesson-resources.html %}
+</article>

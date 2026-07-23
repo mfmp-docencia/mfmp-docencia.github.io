@@ -1,0 +1,18 @@
+- edition_id: tda-301-2026-1
+  resources:
+    - id: example-recurso-1
+      title: Guía de la Clase 1
+      description: Recurso de ejemplo disponible para acompañar la primera clase.
+      type: guide
+      type_label: Guía
+      status: publish
+      unit_id: tda-301-unidad-1
+      class_id: example-clase-1
+    - id: example-recurso-2
+      title: Material complementario
+      description: Recurso de ejemplo pendiente de publicación.
+      type: document
+      type_label: Documento
+      status: draft
+      unit_id: tda-301-unidad-1
+      class_id: example-clase-1

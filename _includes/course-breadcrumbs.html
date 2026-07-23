@@ -23,7 +23,21 @@
     <li><a href="{{ '/' | append: page.course_id | append: '/' | relative_url }}">{{ breadcrumb_course_code }}</a></li>
     {% if page.unit_id %}
       <li><a href="{{ '/' | append: page.course_id | append: '/contenidos/' | relative_url }}">Contenidos</a></li>
-      <li aria-current="page" data-breadcrumb-unit><a href="{{ page.url | relative_url }}">{{ breadcrumb_current_label }}</a></li>
+      {% assign breadcrumb_unit_url = '/' | append: page.course_id | append: '/contenidos/unidad-' %}
+      {% for course_content in site.data.course_content %}
+        {% if course_content.course_id == page.course_id %}
+          {% for unit in course_content.units %}
+            {% if unit.id == page.unit_id %}
+              {% assign breadcrumb_unit_url = breadcrumb_unit_url | append: unit.number | append: '/' %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      {% if page.class_id %}
+        <li><a href="{{ breadcrumb_unit_url | relative_url }}">{{ breadcrumb_current_label }}</a></li>
+        <li aria-current="page">{{ page.title }}</li>
+      {% else %}
+      <li aria-current="page" data-breadcrumb-unit><a href="{{ breadcrumb_unit_url | relative_url }}">{{ breadcrumb_current_label }}</a></li>
       {% for edition in site.data.editions %}
         {% if edition.course_id == page.course_id %}
           {% if edition.current %}
@@ -41,6 +55,7 @@
           {% endif %}
         {% endif %}
       {% endfor %}
+      {% endif %}
     {% else %}
       <li aria-current="page">{{ breadcrumb_current_label }}</li>
     {% endif %}
