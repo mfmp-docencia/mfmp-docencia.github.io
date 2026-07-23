@@ -143,6 +143,8 @@ Los archivos YAML no deben contener párrafos extensos de contenido docente. Los
 
 La información global de contacto se mantiene en una única página `/contacto/`. Los cursos pueden enlazarla desde su navegación, pero no deben copiar sus datos en cada directorio de curso.
 
+Una página global enlazada desde la experiencia de estudiantes puede declarar `navigation_course_id` en su front matter para conservar temporalmente la navegación del curso de origen. Este campo solo controla la presentación del header: no establece propiedad académica, no sustituye a `course_id` y no convierte la página global en contenido del curso. En la configuración inicial, `/contacto/` conserva la navegación de TDA-301.
+
 ## Reglas para identificadores
 
 Todos los identificadores deben cumplir estas reglas:

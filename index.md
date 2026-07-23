@@ -50,7 +50,7 @@ description: Cursos y recursos docentes publicados en MFMP Docencia.
           <p class="course-code">{{ course.code }}</p>
           <h3><a href="{{ '/' | append: course.id | append: '/' | relative_url }}">{{ course.name }}</a></h3>
           {% for career in site.data.careers %}
-            {% if career.id == course.career_id %}<p>{{ career.name }}</p>{% endif %}
+            {% if career.id == course.career_id %}<p class="career-tag">Carrera · {{ career.name }}</p>{% endif %}
           {% endfor %}
           <a class="card-link" href="{{ '/' | append: course.id | append: '/' | relative_url }}" aria-label="Ir al curso {{ course.name }}">Ir al curso <span aria-hidden="true">→</span></a>
         </article>

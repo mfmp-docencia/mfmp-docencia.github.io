@@ -292,14 +292,14 @@ h2 {
 
 .course-card p:not(.course-code) { color: var(--muted); }
 
-.course-card .career-tag,
+.course-card p.career-tag,
 .career-tag {
   display: inline-block;
   width: fit-content;
   margin: .5rem 0 1rem;
   padding: .35rem .65rem;
   border-radius: 999px;
-  color: #0d1b2a;
+  color: #fff7f5;
   background: var(--coral);
   font-size: .82rem;
   font-weight: 750;
@@ -413,7 +413,7 @@ h2 {
 .site-footer {
   padding: 2.5rem 0;
   color: #dbe2ed;
-  background: var(--ink);
+  background: #0d1b2a;
 }
 
 .site-footer p { margin: 0; }
@@ -465,7 +465,7 @@ h2 {
   .calendar-periods { grid-template-columns: 1fr; }
   .calendar-event { grid-template-columns: 1fr; gap: .35rem; }
 
-  .footer-inner {
+  .site-footer .footer-inner {
     grid-template-columns: 1fr;
     justify-items: center;
     gap: .5rem;
@@ -473,5 +473,8 @@ h2 {
   }
 
   .footer-powered { display: none; }
-  .footer-credit { text-align: center; }
+  .footer-credit {
+    margin-top: .75rem;
+    text-align: center;
+  }
 }
