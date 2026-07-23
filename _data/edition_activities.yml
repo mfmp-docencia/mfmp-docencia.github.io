@@ -4,6 +4,8 @@
       title: Actividad 1
       description: Actividad de ejemplo habilitada para revisión.
       status: publish
+      unit_id: tda-301-unidad-1
+      class_id: example-clase-1
     - id: example-actividad-2
       title: Actividad 2
       description: Actividad de ejemplo pendiente de publicación.

@@ -645,7 +645,99 @@ h2 {
   color: #fff;
   background: var(--coral);
   font-weight: 700;
+  text-decoration: none;
 }
+
+.course-class-tag:hover { background: var(--accent-dark); }
+
+.lesson-header .eyebrow { margin-bottom: .5rem; }
+
+.lesson-content {
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  line-height: 1.75;
+}
+
+.lesson-content > :first-child { margin-top: 0; }
+
+.lesson-pages {
+  min-height: clamp(18rem, 48vw, 34rem);
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: .45rem;
+  background: var(--paper);
+}
+
+.lesson-page > :first-child { margin-top: 0; }
+.lesson-page > :last-child { margin-bottom: 0; }
+
+.lesson-viewer-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.lesson-viewer-controls p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 750;
+  text-align: center;
+}
+
+.lesson-viewer-controls button {
+  min-height: 2.75rem;
+  padding: .55rem .9rem;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  color: #fff;
+  background: var(--accent-dark);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.lesson-viewer-controls button:first-child { justify-self: start; }
+.lesson-viewer-controls button:last-child { justify-self: end; }
+
+.lesson-viewer-controls button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 30rem) {
+  .lesson-viewer-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lesson-viewer-controls p {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+.lesson-related {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: clamp(1.25rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.lesson-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+}
+
+.lesson-related-card {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .45rem;
+  background: var(--paper);
+}
+
+.lesson-related-card h3 { margin: .25rem 0 .5rem; }
+.lesson-related-card p:last-child { margin-bottom: 0; }
+.lesson-related-card a { color: var(--accent-dark); font-weight: 750; }
 
 .course-content-classes {
   display: grid;

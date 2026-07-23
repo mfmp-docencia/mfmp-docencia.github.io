@@ -1,0 +1,36 @@
+{% assign has_lesson_resources = false %}
+{% for edition_resources in site.data.edition_resources %}
+  {% if edition_resources.edition_id == page.edition_id %}
+    {% for resource in edition_resources.resources %}
+      {% if resource.class_id == page.class_id %}
+        {% if resource.status == 'publish' %}
+          {% assign has_lesson_resources = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if has_lesson_resources %}
+<section class="lesson-related" aria-labelledby="lesson-resources-title">
+  <h2 id="lesson-resources-title">Recursos de la clase</h2>
+  <div class="lesson-related-grid">
+  {% for edition_resources in site.data.edition_resources %}
+    {% if edition_resources.edition_id == page.edition_id %}
+      {% for resource in edition_resources.resources %}
+        {% if resource.class_id == page.class_id %}
+          {% if resource.status == 'publish' %}
+      <article class="lesson-related-card">
+        <p class="eyebrow">{{ resource.type_label }}</p>
+        <h3>{{ resource.title }}</h3>
+        <p>{{ resource.description }}</p>
+        {% if resource.url %}<a href="{{ resource.url }}">Abrir recurso</a>{% endif %}
+      </article>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  </div>
+</section>
+{% endif %}

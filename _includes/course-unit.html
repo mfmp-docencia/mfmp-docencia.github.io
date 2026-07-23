@@ -63,7 +63,8 @@
 {% for class in edition_classes.classes %}
 {% if class.unit_id == unit.id %}
 {% if class.status == 'publish' %}
-      <li id="{{ class.id }}" class="course-class-tag">{{ class.title }}</li>
+{% assign class_url = '/' | append: page.course_id | append: '/' | append: edition.path | append: '/clases/' | append: class.path | append: '/' %}
+      <li><a id="{{ class.id }}" class="course-class-tag" href="{{ class_url | relative_url }}">{{ class.title }}</a></li>
 {% endif %}
 {% endif %}
 {% endfor %}

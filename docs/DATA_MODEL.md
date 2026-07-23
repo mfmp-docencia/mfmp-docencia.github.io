@@ -159,6 +159,7 @@ Define las clases concretas de cada ejecución. Cada registro declara `edition_i
 
 - `id`: identificador estable y único dentro de la edición.
 - `unit_id`: referencia a la unidad permanente que desarrolla.
+- `path`: segmento estable y legible utilizado en la URL pública.
 - `number`: orden público de la clase dentro de la edición.
 - `title`: nombre público de la clase.
 - `status`: ciclo de publicación.
@@ -170,6 +171,25 @@ Define las clases concretas de cada ejecución. Cada registro declara `edition_i
 - `archived`: la clase se conserva en los datos como referencia histórica, pero no se muestra públicamente.
 
 Solo las clases con `status: publish` se incluyen en la navegación y en el índice de clases de la unidad. Si una unidad no posee clases publicadas en la edición vigente, el índice no se presenta. La interfaz agrupa cada clase bajo la unidad referenciada por `unit_id`. Así, una edición puede distribuir una unidad en `x` clases y la siguiente en `x + 1` sin modificar ni duplicar la unidad oficial. El contenido narrativo de una clase se almacena bajo `courses/<course-id>/editions/<edition-path>/classes/`.
+
+#### Front matter de una clase
+
+Cuando una clase necesita contenido narrativo, su página se crea en `courses/<course-id>/editions/<edition-path>/classes/<class-id>/index.md`. Su front matter declara:
+
+- `layout`: debe ser `lesson`.
+- `title`: título documental y accesible de la página; debe ser consistente con la clase referenciada.
+- `description`: resumen breve para metadatos y vistas previas.
+- `permalink`: ruta pública bajo `/<course-id>/<edition-path>/clases/<class-path>/`.
+- `course_id`: curso propietario.
+- `edition_id`: edición propietaria.
+- `unit_id`: unidad permanente que desarrolla.
+- `class_id`: referencia al registro de `_data/edition_classes.yml`.
+
+La página no duplica `number` ni `status`: ambos se resuelven desde `_data/edition_classes.yml`. El `class_id` debe existir dentro del `edition_id` declarado y su `unit_id` debe coincidir con el de la página. Solo una clase con `status: publish` puede enlazarse desde la navegación pública.
+
+El cuerpo Markdown es la fuente canónica del contenido de la clase. El separador `<!-- page -->` divide el cuerpo en páginas para el visor sin introducir una colección de diapositivas paralela. PDF y PPT se importan a Markdown e imágenes antes de publicarse; el original puede mantenerse únicamente como recurso descargable.
+
+La plantilla canónica y las reglas de creación se documentan en [`CLASS_FRONT_MATTER.md`](CLASS_FRONT_MATTER.md).
 
 ### `_data/edition_activities.yml`
 
@@ -184,7 +204,13 @@ Define las actividades particulares de cada ejecución. Cada registro declara `e
 
 Solo las actividades con `status: publish` aparecen en la página pública de su edición. Cuando una actividad tiene una fecha, esta también se representa como un evento de `planning.yml` relacionado con la misma edición.
 
-La página `Recursos` también pertenece a la edición porque sus materiales pueden variar entre ejecuciones. Actividades y Recursos se almacenan bajo `courses/<course-id>/editions/<edition-path>/` y sus rutas públicas siguen la forma `/<course-id>/<edition-path>/actividades/` y `/<course-id>/<edition-path>/recursos/`.
+### `_data/edition_resources.yml`
+
+Define los recursos de cada edición. Cada recurso declara `id`, `title`, `description`, `type`, `type_label`, `status` y las referencias opcionales `unit_id` y `class_id`. Puede incluir `url` cuando el material posee un destino confirmado.
+
+Solo los recursos con `status: publish` se presentan públicamente. Cuando declaran `class_id`, el componente de recursos de la clase los muestra junto a su contenido; los recursos `draft` o `archived` permanecen ocultos.
+
+La página `Recursos` también pertenece a la edición porque sus materiales pueden variar entre ejecuciones. Actividades y Recursos se almacenan bajo la edición y sus rutas generales siguen la forma `/<course-id>/<edition-path>/actividades/` y `/<course-id>/<edition-path>/recursos/`.
 
 ### `_data/navigation.yml`
 

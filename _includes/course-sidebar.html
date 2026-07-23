@@ -5,6 +5,7 @@
 {% assign sidebar_activities_url = sidebar_course_url %}
 {% assign sidebar_resources_url = sidebar_course_url %}
 {% assign sidebar_edition_id = '' %}
+{% assign sidebar_edition_path = '' %}
 {% for edition in site.data.editions %}
   {% if edition.course_id == sidebar_course_id %}
     {% if edition.current %}
@@ -12,6 +13,7 @@
       {% assign sidebar_activities_url = sidebar_calendar_url | append: 'actividades/' %}
       {% assign sidebar_resources_url = sidebar_calendar_url | append: 'recursos/' %}
       {% assign sidebar_edition_id = edition.id %}
+      {% assign sidebar_edition_path = edition.path %}
     {% endif %}
   {% endif %}
 {% endfor %}
@@ -31,14 +33,15 @@
                 {% for unit in course_content.units %}
                   {% assign sidebar_unit_url = sidebar_content_url | append: 'unidad-' | append: unit.number | append: '/' %}
                   <li>
-                    <a href="{{ sidebar_unit_url | relative_url }}"{% if page.unit_id == unit.id %} aria-current="page"{% endif %}>Unidad {{ unit.number }}</a>
+                    <a href="{{ sidebar_unit_url | relative_url }}"{% if page.unit_id == unit.id %}{% if page.class_id %}{% else %} aria-current="page"{% endif %}{% endif %}>Unidad {{ unit.number }}</a>
                     <ul class="course-sidebar-classes" aria-label="Clases publicadas de la Unidad {{ unit.number }}">
                       {% for edition_classes in site.data.edition_classes %}
                         {% if edition_classes.edition_id == sidebar_edition_id %}
                           {% for class in edition_classes.classes %}
                             {% if class.unit_id == unit.id %}
                               {% if class.status == 'publish' %}
-                                <li><a href="{{ sidebar_unit_url | append: '#' | append: class.id | relative_url }}" data-course-anchor="{{ class.id }}" data-course-path="{{ sidebar_unit_url | relative_url }}">{{ class.title }}</a></li>
+                                {% assign sidebar_class_url = sidebar_course_url | append: sidebar_edition_path | append: '/clases/' | append: class.path | append: '/' %}
+                                <li><a href="{{ sidebar_class_url | relative_url }}"{% if page.class_id == class.id %} aria-current="page"{% endif %}>{{ class.title }}</a></li>
                               {% endif %}
                             {% endif %}
                           {% endfor %}

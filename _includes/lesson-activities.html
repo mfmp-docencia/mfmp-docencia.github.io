@@ -1,0 +1,35 @@
+{% assign has_lesson_activities = false %}
+{% for edition_activities in site.data.edition_activities %}
+  {% if edition_activities.edition_id == page.edition_id %}
+    {% for activity in edition_activities.activities %}
+      {% if activity.class_id == page.class_id %}
+        {% if activity.status == 'publish' %}
+          {% assign has_lesson_activities = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if has_lesson_activities %}
+<section class="lesson-related" aria-labelledby="lesson-activities-title">
+  <h2 id="lesson-activities-title">Actividades de la clase</h2>
+  <div class="lesson-related-grid">
+  {% for edition_activities in site.data.edition_activities %}
+    {% if edition_activities.edition_id == page.edition_id %}
+      {% for activity in edition_activities.activities %}
+        {% if activity.class_id == page.class_id %}
+          {% if activity.status == 'publish' %}
+      <article class="lesson-related-card">
+        <p class="eyebrow">Actividad</p>
+        <h3>{{ activity.title }}</h3>
+        <p>{{ activity.description }}</p>
+      </article>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  </div>
+</section>
+{% endif %}
