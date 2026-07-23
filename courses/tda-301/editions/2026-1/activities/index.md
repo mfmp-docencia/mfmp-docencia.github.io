@@ -5,6 +5,7 @@ description: Actividades de la edición 2026-1 del curso TDA-301.
 permalink: /tda-301/2026-1/actividades/
 course_id: tda-301
 edition_id: tda-301-2026-1
+breadcrumb_label: Actividades
 ---
 
 <header class="page-header container">

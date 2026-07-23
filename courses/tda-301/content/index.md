@@ -4,6 +4,7 @@ title: Contenidos TDA-301
 description: Unidades y clases del curso TDA-301.
 permalink: /tda-301/contenidos/
 course_id: tda-301
+breadcrumb_label: Contenidos
 ---
 
 <header class="page-header container content-page-header">

@@ -6,6 +6,7 @@ permalink: /tda-301/2026-1/
 course_id: tda-301
 edition_id: tda-301-2026-1
 planning_calendar: true
+breadcrumb_label: Calendario
 ---
 
 {% assign current_edition = nil %}

@@ -1,0 +1,48 @@
+{% assign breadcrumb_course_code = page.course_id %}
+{% for course in site.data.courses %}
+  {% if course.id == page.course_id %}
+    {% assign breadcrumb_course_code = course.code %}
+  {% endif %}
+{% endfor %}
+
+{% assign breadcrumb_current_label = page.breadcrumb_label %}
+{% if page.unit_id %}
+  {% for course_content in site.data.course_content %}
+    {% if course_content.course_id == page.course_id %}
+      {% for unit in course_content.units %}
+        {% if unit.id == page.unit_id %}
+          {% assign breadcrumb_current_label = 'Unidad ' | append: unit.number %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<nav class="breadcrumbs container" aria-label="Ruta de navegación">
+  <ol>
+    <li><a href="{{ '/' | append: page.course_id | append: '/' | relative_url }}">{{ breadcrumb_course_code }}</a></li>
+    {% if page.unit_id %}
+      <li><a href="{{ '/' | append: page.course_id | append: '/contenidos/' | relative_url }}">Contenidos</a></li>
+      <li aria-current="page" data-breadcrumb-unit><a href="{{ page.url | relative_url }}">{{ breadcrumb_current_label }}</a></li>
+      {% for edition in site.data.editions %}
+        {% if edition.course_id == page.course_id %}
+          {% if edition.current %}
+            {% for edition_classes in site.data.edition_classes %}
+              {% if edition_classes.edition_id == edition.id %}
+                {% for class in edition_classes.classes %}
+                  {% if class.unit_id == page.unit_id %}
+                    {% if class.status == 'publish' %}
+                      <li aria-current="page" data-breadcrumb-class="{{ class.id }}" hidden>{{ class.title }}</li>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <li aria-current="page">{{ breadcrumb_current_label }}</li>
+    {% endif %}
+  </ol>
+</nav>

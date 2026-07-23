@@ -266,6 +266,7 @@ Los errores de compilación deben corregirse en las fuentes del repositorio. No 
 - Las decisiones de presentación global se mantienen separadas del contenido docente.
 - La navegación global se presenta en el header. Dentro del contexto de un curso, la navegación se traslada a una barra lateral jerárquica con Inicio, Calendario, Contenidos, unidades, clases publicadas, Actividades, Recursos y Contáctame. Las unidades se leen desde el curso; las clases, Actividades y Recursos se leen desde la edición vigente.
 - La unidad activa se deriva de su página permanente; la clase activa se deriva del ancla dentro de esa página. Cada página de unidad incorpora el índice de clases publicadas de la edición vigente. Las clases en estado `draft` o `archived` no se incorporan a la navegación ni generan una sección pública vacía.
+- Todas las páginas internas del curso presentan una ruta de navegación jerárquica mediante un `nav` accesible; Inicio se omite porque constituye la raíz. Las unidades incorporan el nivel intermedio Contenidos y, cuando una clase publicada se selecciona mediante su ancla, esta se agrega como último nivel. Esta ruta comunica ubicación, no progreso temporal.
 - En pantallas pequeñas, la barra lateral se presenta como un índice desplegable para no desplazar excesivamente el contenido principal.
 
 ### Cambios y colaboración
