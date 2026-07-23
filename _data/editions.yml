@@ -3,5 +3,10 @@
   period: "2026-1"
   path: "2026-1"
   current: true
+  academic_calendar_period_id: "2026-1"
+  academic_calendar_event_ids:
+    - "2026-1-easter"
+    - "2026-1-workers-day"
+    - "2026-1-academic-holiday-may-02"
   starts_on: 2026-03-17
   ends_on: 2026-05-09

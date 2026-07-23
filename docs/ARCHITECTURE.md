@@ -78,8 +78,10 @@ Ejemplos de información que pertenece a `Course`:
 - Identificación del curso.
 - Descripción estable.
 - Propósito y objetivos permanentes.
+- Metadatos oficiales del programa, como plan, horas, créditos y prerrequisitos.
 - Organización del contenido docente.
-- Contenido y recursos concebidos para ser reutilizados.
+- Unidades, aprendizajes esperados y criterios de evaluación.
+- Contenido docente concebido para ser reutilizado.
 
 Un cambio en `Course` modifica la definición reusable del curso y puede afectar a sus ediciones presentes o futuras.
 
@@ -94,7 +96,11 @@ Ejemplos de información que pertenece a `Edition`:
 - Identificación de la edición.
 - Periodo al que corresponde.
 - Planificación temporal.
+- Distribución concreta de clases para esa ejecución.
 - Relación entre fechas y contenidos del curso.
+- Referencia al periodo del calendario académico institucional aplicable.
+- Eventos fechados de clases, actividades y evaluaciones de la ejecución.
+- Actividades y recursos que pueden variar entre periodos.
 
 Una nueva ejecución del mismo curso debe producir una nueva edición, no una copia del curso.
 
@@ -105,15 +111,24 @@ La relación se expresa de la siguiente forma:
 ```text
 Course
 ├── contenido permanente
-├── organización reusable
+├── unidades y resultados de aprendizaje
 └── Edition
     ├── periodo
-    └── planificación temporal
+    ├── clases que referencian unidades
+    ├── planificación temporal
+    ├── actividades
+    └── recursos
 ```
 
-Un `Course` puede tener múltiples `Edition`. Una `Edition` pertenece a un `Course`.
+Un `Course` puede tener múltiples `Edition`. Una `Edition` pertenece a un `Course`. Las unidades forman parte del curso y se conservan entre periodos; las clases pertenecen a la edición y referencian una unidad mediante `unit_id`. Por ello, dos ediciones pueden cubrir las mismas unidades con cantidades y secuencias de clases diferentes.
 
-La edición referencia el contenido permanente del curso y agrega contexto temporal. Si un dato puede reutilizarse sin cambios en una edición futura, debe evaluarse como parte del curso. Si solo describe cuándo ocurre algo en una ejecución determinada, pertenece a la edición.
+La edición referencia el contenido permanente del curso y agrega contexto temporal. También puede presentar, como información complementaria, el periodo del calendario académico institucional que le corresponde. Ese calendario continúa siendo un dato compartido: la edición lo referencia, pero no lo copia ni pasa a ser su propietaria.
+
+El calendario académico no se publica como una sección global de la aplicación porque su vigencia cambia por año y periodo. Se muestra como un bloque desplegable junto a la planificación de la edición y limita su contenido a los eventos institucionales relevantes para esa ejecución. De esta manera aporta contexto sin competir visualmente ni confundirse con el calendario propio del curso.
+
+La planificación del curso se conserva como eventos estructurados asociados a la edición. Una única colección de eventos alimenta las vistas semanal y mensual del calendario; la presentación no debe duplicar ni transformar manualmente las fechas. Como la duración esperada de un curso es de hasta tres meses, el filtrado puede realizarse en el navegador sin incorporar un servicio de calendario o una base de datos adicional.
+
+Si un dato puede reutilizarse sin cambios en una edición futura, debe evaluarse como parte del curso. Si solo describe cuándo ocurre algo en una ejecución determinada, pertenece a la edición.
 
 ### Frontera con Blackboard
 
@@ -147,7 +162,10 @@ La organización del repositorio debe reflejar directamente el modelo de dominio
 │       ├── content/
 │       └── editions/
 │           └── <edition-id>/
-│               └── index.md
+│               ├── index.md
+│               ├── classes/
+│               ├── activities/
+│               └── resources/
 ├── docs/
 │   └── ARCHITECTURE.md
 └── index.md
@@ -165,7 +183,7 @@ El archivo `index.md` del curso contiene su definición principal. El directorio
 
 ### `courses/<course-id>/editions/`
 
-Contiene exclusivamente información dependiente de una ejecución temporal del curso. Cada edición utiliza un identificador que la distingue dentro del curso y mantiene su propia planificación.
+Contiene exclusivamente información dependiente de una ejecución temporal del curso. Cada edición utiliza un identificador que la distingue dentro del curso y mantiene sus propias clases, planificación, actividades y recursos.
 
 Una edición no debe copiar archivos desde `content/`. Debe referenciar o vincular el contenido permanente que corresponda.
 
@@ -244,6 +262,8 @@ Los errores de compilación deben corregirse en las fuentes del repositorio. No 
 - Los layouts y componentes compartidos no deben contener información específica de un curso o edición.
 - El contenido académico no debe depender de una presentación particular para conservar su significado.
 - Las decisiones de presentación global se mantienen separadas del contenido docente.
+- La navegación global se presenta en el header. Dentro del contexto de un curso, la navegación se traslada a una barra lateral jerárquica con Inicio, Calendario, Contenidos, unidades, clases publicadas, Actividades, Recursos y Contáctame. Las unidades se leen desde el curso; las clases, Actividades y Recursos se leen desde la edición vigente.
+- En pantallas pequeñas, la barra lateral se presenta como un índice desplegable para no desplazar excesivamente el contenido principal.
 
 ### Cambios y colaboración
 

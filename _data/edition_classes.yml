@@ -1,0 +1,8 @@
+- edition_id: tda-301-2026-1
+  classes:
+    - { id: example-clase-1, unit_id: tda-301-unidad-1, number: 1, title: Clase 1, status: publish }
+    - { id: example-clase-2, unit_id: tda-301-unidad-1, number: 2, title: Clase 2, status: draft }
+    - { id: example-clase-3, unit_id: tda-301-unidad-1, number: 3, title: Clase 3, status: draft }
+    - { id: example-clase-4, unit_id: tda-301-unidad-2, number: 4, title: Clase 4, status: draft }
+    - { id: example-clase-5, unit_id: tda-301-unidad-2, number: 5, title: Clase 5, status: draft }
+    - { id: example-clase-6, unit_id: tda-301-unidad-2, number: 6, title: Clase 6, status: archived }

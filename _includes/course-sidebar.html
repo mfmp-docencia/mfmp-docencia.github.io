@@ -1,0 +1,59 @@
+{% assign sidebar_course_id = page.course_id | default: page.navigation_course_id %}
+{% assign sidebar_course_url = '/' | append: sidebar_course_id | append: '/' %}
+{% assign sidebar_calendar_url = sidebar_course_url %}
+{% assign sidebar_content_url = sidebar_course_url | append: 'contenidos/' %}
+{% assign sidebar_activities_url = sidebar_course_url %}
+{% assign sidebar_resources_url = sidebar_course_url %}
+{% assign sidebar_edition_id = '' %}
+{% for edition in site.data.editions %}
+  {% if edition.course_id == sidebar_course_id %}
+    {% if edition.current %}
+      {% assign sidebar_calendar_url = sidebar_course_url | append: edition.path | append: '/' %}
+      {% assign sidebar_activities_url = sidebar_calendar_url | append: 'actividades/' %}
+      {% assign sidebar_resources_url = sidebar_calendar_url | append: 'recursos/' %}
+      {% assign sidebar_edition_id = edition.id %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<aside class="course-sidebar" aria-label="Índice del curso">
+  <details class="course-sidebar-disclosure" open>
+    <summary>Índice del curso <span aria-hidden="true">↓</span></summary>
+    <nav aria-label="Navegación del curso">
+      <ul class="course-sidebar-nav">
+        <li><a href="{{ sidebar_course_url | relative_url }}"{% if page.url == sidebar_course_url %} aria-current="page"{% endif %}>Inicio</a></li>
+        <li><a href="{{ sidebar_calendar_url | relative_url }}"{% if page.url == sidebar_calendar_url %} aria-current="page"{% endif %}>Calendario</a></li>
+        <li>
+          <a href="{{ sidebar_content_url | relative_url }}"{% if page.url == sidebar_content_url %} aria-current="page"{% endif %}>Contenidos</a>
+          {% for course_content in site.data.course_content %}
+            {% if course_content.course_id == sidebar_course_id %}
+              <ul class="course-sidebar-units">
+                {% for unit in course_content.units %}
+                  <li>
+                    <a href="{{ sidebar_content_url | append: '#' | append: unit.id | relative_url }}">Unidad {{ unit.number }}</a>
+                    <ul class="course-sidebar-classes">
+                      {% for edition_classes in site.data.edition_classes %}
+                        {% if edition_classes.edition_id == sidebar_edition_id %}
+                          {% for class in edition_classes.classes %}
+                            {% if class.unit_id == unit.id %}
+                              {% if class.status == 'publish' %}
+                                <li><a href="{{ sidebar_content_url | append: '#' | append: class.id | relative_url }}">{{ class.title }}</a></li>
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endfor %}
+        </li>
+        <li><a href="{{ sidebar_activities_url | relative_url }}"{% if page.url == sidebar_activities_url %} aria-current="page"{% endif %}>Actividades</a></li>
+        <li><a href="{{ sidebar_resources_url | relative_url }}"{% if page.url == sidebar_resources_url %} aria-current="page"{% endif %}>Recursos</a></li>
+        <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url == '/contacto/' %} aria-current="page"{% endif %}>Contáctame</a></li>
+      </ul>
+    </nav>
+  </details>
+</aside>
