@@ -1,5 +1,7 @@
 (function () {
   var viewer = document.querySelector('[data-lesson-pages]');
+  var viewerShell = document.querySelector('[data-lesson-viewer]');
+  var fullscreenButton = document.querySelector('[data-lesson-fullscreen]');
   if (!viewer) return;
 
   var groups = [[]];
@@ -23,8 +25,6 @@
     });
   });
 
-  if (groups.length < 2) return;
-
   viewer.textContent = '';
 
   var pages = groups.map(function (group, index) {
@@ -47,6 +47,31 @@
     '<button type="button" data-lesson-next>Siguiente →</button>'
   ].join('');
   viewer.after(controls);
+
+  if (!viewerShell || !viewerShell.requestFullscreen || !document.exitFullscreen) {
+    if (fullscreenButton) fullscreenButton.hidden = true;
+  } else if (fullscreenButton) {
+    fullscreenButton.addEventListener('click', function () {
+      if (document.fullscreenElement === viewerShell) {
+        document.exitFullscreen();
+      } else {
+        viewerShell.requestFullscreen();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function () {
+      var isFullscreen = document.fullscreenElement === viewerShell;
+      fullscreenButton.setAttribute(
+        'aria-label',
+        isFullscreen ? 'Salir de pantalla completa' : 'Ver contenido en pantalla completa'
+      );
+      fullscreenButton.setAttribute(
+        'title',
+        isFullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'
+      );
+      fullscreenButton.classList.toggle('is-fullscreen', isFullscreen);
+    });
+  }
 
   var previousButton = controls.querySelector('[data-lesson-previous]');
   var nextButton = controls.querySelector('[data-lesson-next]');
