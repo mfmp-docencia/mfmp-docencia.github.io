@@ -6,7 +6,7 @@ permalink: /tda-301/contenidos/
 course_id: tda-301
 ---
 
-<header class="page-header container">
+<header class="page-header container content-page-header">
   <p class="eyebrow">TDA-301</p>
   <h1>Contenidos</h1>
   <p>Organización de unidades y clases del curso.</p>
@@ -25,12 +25,19 @@ course_id: tda-301
               <section id="{{ expected_learning.id }}" class="course-expected-learning">
                 <p class="eyebrow">Aprendizaje esperado {{ expected_learning.number }}</p>
                 <h3>{{ expected_learning.statement }}</h3>
-                <h4>Criterios de evaluación</h4>
-                <ul>
-                  {% for criterion in expected_learning.evaluation_criteria %}
-                    <li>{{ criterion.statement }}</li>
-                  {% endfor %}
-                </ul>
+                <details class="evaluation-criteria">
+                  <summary>
+                    <span>Criterios de evaluación</span>
+                    <span class="evaluation-criteria-action" aria-hidden="true">Ver criterios ↓</span>
+                  </summary>
+                  <div class="evaluation-criteria-content">
+                    <ul>
+                      {% for criterion in expected_learning.evaluation_criteria %}
+                        <li>{{ criterion.statement }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </details>
               </section>
             {% endfor %}
           </div>

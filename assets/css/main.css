@@ -433,6 +433,9 @@ h2 {
   gap: 2rem;
 }
 
+.page-header.content-page-header { padding-bottom: clamp(1rem, 2vw, 1.5rem); }
+.content-page-header + .course-content-outline { padding-top: clamp(1.25rem, 3vw, 2rem); }
+
 .course-content-unit {
   padding: clamp(1.25rem, 4vw, 2rem);
   border: 1px solid var(--line);
@@ -519,8 +522,46 @@ h2 {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
 }
 
-.course-expected-learning h4 { margin-bottom: .5rem; }
-.course-expected-learning ul { margin: 0; padding-left: 1.25rem; }
+.evaluation-criteria {
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.evaluation-criteria summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .8rem 1rem;
+  cursor: pointer;
+  font-family: Poppins, Inter, "Segoe UI", Arial, sans-serif;
+  font-weight: 700;
+  list-style: none;
+}
+
+.evaluation-criteria summary::-webkit-details-marker { display: none; }
+
+.evaluation-criteria-action {
+  color: var(--accent-dark);
+  font-size: .78rem;
+  white-space: nowrap;
+}
+
+.evaluation-criteria[open] .evaluation-criteria-action { font-size: 0; }
+.evaluation-criteria[open] .evaluation-criteria-action::after {
+  content: "Ocultar criterios ↑";
+  font-size: .78rem;
+}
+
+.evaluation-criteria-content {
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.evaluation-criteria ul { margin: 1rem 0 0; padding-left: 1.25rem; }
 
 .course-class-tags {
   display: flex;
