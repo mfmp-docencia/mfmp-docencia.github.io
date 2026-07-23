@@ -18,7 +18,7 @@ permalink: /courses/
         <p class="course-code">{{ course.code }}</p>
         <h2><a href="{{ '/' | append: course.id | append: '/' | relative_url }}">{{ course.name }}</a></h2>
         {% for career in site.data.careers %}
-          {% if career.id == course.career_id %}<p class="career-tag">Carrera · {{ career.name }}</p>{% endif %}
+          {% if career.id == course.career_id %}<p class="career-tag">{{ career.name }}</p>{% endif %}
         {% endfor %}
         <a class="card-link" href="{{ '/' | append: course.id | append: '/' | relative_url }}" aria-label="Ir al curso {{ course.name }}">Ir al curso <span aria-hidden="true">→</span></a>
       </article>
