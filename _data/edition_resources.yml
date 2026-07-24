@@ -5,14 +5,25 @@
       description: Recurso de ejemplo disponible para acompañar la primera clase.
       type: guide
       type_label: Guía
+      delivery: download
+      url: /assets/downloads/tda-301/2026-1/guia-clase-1.md
+      format: Markdown
+      download_name: guia-clase-1.md
       status: publish
       unit_id: tda-301-unidad-1
       class_id: example-clase-1
+      tags:
+        - python
+        - introducción
     - id: example-recurso-2
       title: Material complementario
       description: Recurso de ejemplo pendiente de publicación.
       type: document
       type_label: Documento
+      delivery: download
+      format: PDF
       status: draft
       unit_id: tda-301-unidad-1
       class_id: example-clase-1
+      tags:
+        - python

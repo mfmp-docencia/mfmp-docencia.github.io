@@ -23,6 +23,7 @@
   <script src="{{ '/assets/js/theme.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
   {% if page.planning_calendar %}<script src="{{ '/assets/js/planning-calendar.js' | relative_url }}?v={{ site.asset_version }}" defer></script>{% endif %}
   {% if page.layout == 'lesson' %}<script src="{{ '/assets/js/lesson-viewer.js' | relative_url }}?v={{ site.asset_version }}" defer></script>{% endif %}
+  {% if page.resource_library %}<script src="{{ '/assets/js/resource-library.js' | relative_url }}?v={{ site.asset_version }}" defer></script>{% endif %}
 </head>
 <body>
   {% include header.html %}
