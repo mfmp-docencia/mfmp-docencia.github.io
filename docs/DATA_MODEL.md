@@ -206,9 +206,20 @@ Solo las actividades con `status: publish` aparecen en la página pública de su
 
 ### `_data/edition_resources.yml`
 
-Define los recursos de cada edición. Cada recurso declara `id`, `title`, `description`, `type`, `type_label`, `status` y las referencias opcionales `unit_id` y `class_id`. Puede incluir `url` cuando el material posee un destino confirmado.
+Define los recursos de cada edición. Cada recurso declara `id`, `title`, `description`, `type`, `type_label`, `status` y las referencias opcionales `unit_id` y `class_id`. Puede incluir `tags` como colección de etiquetas temáticas normalizadas.
+
+La entrega del recurso se define mediante:
+
+- `delivery`: `download`, `external` o `embedded`.
+- `url`: destino confirmado del recurso.
+- `format`: etiqueta pública del formato, por ejemplo `PDF` o `Markdown`.
+- `download_name`: nombre sugerido al descargar; se utiliza cuando `delivery` es `download`.
+
+Un recurso publicado con `delivery: download` debe declarar `url`, `format` y `download_name`. Los archivos descargables propios se almacenan bajo `assets/downloads/<course-id>/<edition-path>/`; no se duplican dentro de la página de clase.
 
 Solo los recursos con `status: publish` se presentan públicamente. Cuando declaran `class_id`, el componente de recursos de la clase los muestra junto a su contenido; los recursos `draft` o `archived` permanecen ocultos.
+
+La biblioteca general de la edición utiliza la misma colección y no mantiene un listado paralelo. Cada tarjeta conserva como atributos semánticos `type`, `unit_id`, `class_id` y `tags`. Los filtros se construyen en el navegador desde los recursos publicados, por lo que no mantienen catálogos duplicados.
 
 La página `Recursos` también pertenece a la edición porque sus materiales pueden variar entre ejecuciones. Actividades y Recursos se almacenan bajo la edición y sus rutas generales siguen la forma `/<course-id>/<edition-path>/actividades/` y `/<course-id>/<edition-path>/recursos/`.
 
